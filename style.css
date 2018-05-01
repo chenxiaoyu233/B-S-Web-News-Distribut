@@ -1,0 +1,35 @@
+div.head {
+    background-color: palevioletred;
+    margin: 0%;
+    border-color: black;
+    border-style: dashed;
+}
+
+div.head h2 {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    font-style: italic;
+    font-variant: small-caps;
+}
+
+div#links {
+    display: flex;
+}
+
+div#links a{
+    margin: 0%;
+    padding: 0%;
+    flex: 10%;
+}
+
+a.title-content{
+    text-align: center;
+    transition-duration: 1s;
+}
+a.title-content:hover{
+    background-color: firebrick;
+    border-radius: 30px/10px;
+    box-shadow: 5px 5px 5px rgb(100, 10, 10);
+    transition-duration: 1s;
+}
