@@ -30,15 +30,27 @@
 ?>
 
     <form action="./login.php" method="post" class="login">
-	   <p>
-		  用户名: <input type="text" name="user-name" id="user-name"> 
-	   </p>
-	   <p>
-		  密码 : <input type="password" name="password" id = "password"> 
-	   </p>
-	   <p>
-		  <input type="submit" name="submit" value="Login">
-	   </p>
+	   <ul class = "row1">
+		  <li class = "col1">
+		     用户名 
+		  </li>
+		  <li class = "col2">
+		     <input type="text" name="user-name" id="user-name"> 
+		  </li>
+	   </ul>
+	   <ul class = "row2">
+		  <li class = "col1">
+		     密码 
+		  </li>
+		  <li class = "col2">
+		     <input type="password" name="password" id = "password"> 
+		  </li>
+	   </ul>
+	   <ul class = "row3">
+		  <li class = "col1">
+	         <input type="submit" name="submit" value="Login">
+	      </li>
+	   </ul>
     </form>
 </div>
 
