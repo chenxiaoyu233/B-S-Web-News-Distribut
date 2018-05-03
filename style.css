@@ -70,6 +70,7 @@ nav.head h2 {
     font-size: 30px;
     font-style: italic;
     font-variant: small-caps;
+    margin: 30px;
 /*     margin: 0; 尝试用js修改这个属性*/ 
 }
 
@@ -84,6 +85,7 @@ div#h2 {
 
 div#links {
     display: flex;
+    background-color: gray;
 }
 
 div#links a{
@@ -121,6 +123,7 @@ div.content {
     position: absolute;
     top: 150px;
     padding-right: 100mm;
+    padding-bottom: 0mm;
     border-radius: 4px/4px;
 }
 
