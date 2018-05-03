@@ -107,6 +107,11 @@ a.title-content:hover{
     transition-duration: 0.5s;
 }
 
+div.content{
+   position: absolute;
+   top: 150px;
+}
+
 ul#test {
     display: none;
     background-color: mediumslateblue;
