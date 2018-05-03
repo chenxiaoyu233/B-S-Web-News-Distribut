@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <?php print "<title>TITLE</title>" ?>
+    <?php print "<title>" + TITLE + "</title>\n" ?>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
