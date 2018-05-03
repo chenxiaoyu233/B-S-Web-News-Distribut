@@ -29,7 +29,7 @@
    check();
 ?>
 
-    <form action="./login.php" method="post">
+    <form action="./login.php" method="post" class="login">
 	   <p>
 		  用户名: <input type="text" name="user-name" id="user-name"> 
 	   </p>
