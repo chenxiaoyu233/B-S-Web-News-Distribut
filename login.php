@@ -29,33 +29,32 @@
    check();
 ?>
 
-    <form action="./login.php" method="post" class="login">
-	   <ul class = "row1">
-		  <li class = "col1">
-		     用户名 
-		  </li>
-		  <li class = "col2">
-		     <input type="text" name="user-name" id="user-name"> 
-		  </li>
-	   </ul>
-	   <ul class = "row2">
-		  <li class = "col1">
-		     密码 
-		  </li>
-		  <li class = "col2">
-		     <input type="password" name="password" id = "password"> 
-		  </li>
-	   </ul>
-	   <ul class = "row3">
-		  <li class = "col1">
-	         <input type="submit" name="submit" value="Login">
-	      </li>
-	   </ul>
-    </form>
-</div>
+<form action="./login.php" method="post" class="login">
+<ul class="row1">
+	<li class="col1">
+		用户名
+	</li>
+	<li class="col2">
+		<input type="text" name="user-name" id="user-name">
+	</li>
+	<li class="col1">
+		密码
+	</li>
+	<li class="col2">
+		<input type="password" name="password" id="password">
+	</li>
+</ul>
 
+<ul class="row2">
+	<li class="submit">
+		<input type="submit" name="submit" value="Login">
+	</li>
+</ul>
+</form>
+</div>
+	
 <?php
-   include('footer.php');
+include('footer.php');
 ?>
 
 <?php ob_end_flush(); //将缓冲类容发送至浏览器并关闭缓冲?>
