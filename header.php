@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Web 新闻发布系统</title>
+    <?php print "<title>TITLE</title>" ?>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 

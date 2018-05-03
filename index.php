@@ -1,4 +1,5 @@
 <?php
-    include('header.html');
-    include('footer.html');
+    define('TITLE', 'Chenxiaoyu\'s Web News');
+    include('header.php');
+    include('footer.php');
 ?>
