@@ -6,7 +6,8 @@ div.content {
     box-shadow: 2px 3px 6px #bbb;
 }
 
-p.errot {
+
+p.error {
     color: red;
     text-align: center;
 }
