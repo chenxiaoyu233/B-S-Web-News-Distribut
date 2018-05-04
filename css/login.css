@@ -1,9 +1,7 @@
 div.content {
-	background-color: white;
 	left: 30%;
 	right: 30%;
 	border-radius: 4px/4px;
-	box-shadow: 2px 3px 6px #bbb;
 }
 
 
