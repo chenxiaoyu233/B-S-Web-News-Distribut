@@ -1,14 +1,38 @@
 div.content {
-    background-color: white;
-    left: 30%;
-    right: 30%;
-    border-radius: 4px/4px;
-    box-shadow: 2px 3px 6px #bbb;
+	background-color: white;
+	left: 30%;
+	right: 30%;
+	border-radius: 4px/4px;
+	box-shadow: 2px 3px 6px #bbb;
 }
 
 
 p.error {
-    color: red;
-    text-align: center;
+	color: red;
+	text-align: center;
+}
+
+div.content {
+	left: 0px;
+	right: 0px;
+	margin: auto;
+	margin-top: 20%;
+	border-radius: 4px/4px;
+}
+
+form.login {
+	background-color: #f1f1f1;
+	width: 20%;
+	margin: auto;
+	border-radius: 4px/4px;
+	padding: 20px;
+	box-shadow: 1px 2px 5px #2d1717;
+}
+
+div.form-content {
+	margin: 5px;
+	text-align: center;
+	left: 0px;
+	right: 0px;
 }
 
