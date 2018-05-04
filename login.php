@@ -29,7 +29,6 @@
    check();
 ?>
 
-<div class="form">
    <form action="./login.php" method="post" class="login">
 		<div class="form-content">
 		   用户名
@@ -47,8 +46,6 @@
    		   <input type="submit" name="submit" value="Login">
    		</div>
    </form>
-</div>
-
 
 </div>
 	
