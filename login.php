@@ -10,14 +10,28 @@
 <div class = "content">
 
 <?php
+   function print_error_message($message){
+$head = <<<'HEAD'
+<div class = "error">
+<img src="./image/sadpanda.jpg" alt="sadpanda" class="sadpanda">
+<p>
+HEAD;
+$tail = <<<'TAIL'
+</p>
+</div>
+TAIL;
+	  print $head . $message . $tail;
+   }
    function check(){
 	  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		 if(empty($_POST['user-name'])){
-			print "<p class=\"error\">请输入账号</p>\n";
+			//print "<p class=\"error\">请输入账号</p>\n";
+			print_error_message("请输入账号");
 			return;
 		 }
 		 if(empty($_POST['password'])){
-			print "<p class=\"error\">请输入密码</p>\n";
+			//print "<p class=\"error\">请输入密码</p>\n";
+			print_error_message("请输入密码");
 			return;
 		 }
 		 //检查是否登陆成功 -> 需要和数据库交互 -> TODO : 需要实现一个判断的接口 
@@ -42,8 +56,8 @@
    		<div class="form-content">
    		   <input type="password" name="password" id="password">
    		</div>
-   		<div class="form-content">
-   		   <input type="submit" name="submit" value="Login">
+		<div class="form-content">
+		   <input type="submit" name="submit" value="Login" id="submit-button">
    		</div>
    </form>
 
