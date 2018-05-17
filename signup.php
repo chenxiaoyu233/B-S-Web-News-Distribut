@@ -1,11 +1,24 @@
 <?php
-    define(TITLE, 'Chenxiaoyu\'s Web News -- 注册');
-    include('header.php');
+require_once('setting.php');
+define(TITLE, 'Chenxiaoyu\'s Web News -- 注册');
+include('header.php');
 ?>
 
 <link rel="stylesheet" href="./css/login.css">
 <div class="content">
+
+<?php
+   //echo preg_match("/^[_0-9a-zA-Z]+@[_0-9a-zA-Z]+\.[a-zA-Z]+$/", "a@b.c");
+   $user -> register();
+?>
+
     <form action="./signup.php" method="post" class="signup">
+		<div class="form-content">
+		   电子邮箱
+		</div>
+   		<div class="form-content">
+   		   <input type="text" name="email" id="email">
+   		</div>
 		<div class="form-content">
 		   用户名
 		</div>
@@ -19,13 +32,13 @@
    		   <input type="password" name="password" id="password">
    		</div>
    		<div class="form-content">
-            确认密码
+		   确认密码
    		</div>
    		<div class="form-content">
-   		   <input type="password" name="confirm-password" id="password">
+   		   <input type="password" name="confirm-password" id="confirm-password">
    		</div>
 		<div class="form-content">
-		   <input type="submit" name="submit" value="Login" id="submit-button">
+		   <input type="submit" name="submit" value="Sign Up" id="submit-button" style="width:60px;height:60px;">
    		</div>
     </form>
 </div>

@@ -1,8 +1,10 @@
 <?php ob_start(); //输出缓冲?>
 
 <?php
-   define('TITLE', 'Chenxiaoyu\'s Web News -- 登陆');
-   include('header.php');
+require_once('setting.php');
+define('TITLE', 'Chenxiaoyu\'s Web News -- 登陆');
+include('header.php');
+
 ?>
 
 
@@ -10,37 +12,7 @@
 <div class = "content">
 
 <?php
-   function print_error_message($message){
-$head = <<<'HEAD'
-<div class = "error">
-<img src="./image/sadpanda.jpg" alt="sadpanda" class="sadpanda">
-<p>
-HEAD;
-$tail = <<<'TAIL'
-</p>
-</div>
-TAIL;
-	  print $head . $message . $tail;
-   }
-   function check(){
-	  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		 if(empty($_POST['user-name'])){
-			//print "<p class=\"error\">请输入账号</p>\n";
-			print_error_message("请输入账号");
-			return;
-		 }
-		 if(empty($_POST['password'])){
-			//print "<p class=\"error\">请输入密码</p>\n";
-			print_error_message("请输入密码");
-			return;
-		 }
-		 //检查是否登陆成功 -> 需要和数据库交互 -> TODO : 需要实现一个判断的接口 
-		 ob_end_clean();
-		 //登陆之后记录信息 -> TODO : 需要实现一个接口用于发送cookie之类的东西
-		 header('Location: ./index.php');
-	  }
-   }
-   check();
+   $user -> login();
 ?>
 
    <form action="./login.php" method="post" class="login">

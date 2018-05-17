@@ -59,7 +59,7 @@ div.error p {
    margin: 2px;
 }
 
-form.login {
+form.login, form.signup {
    background-color: #f1f1f1;
    width: 200px;
    height: auto;
@@ -89,7 +89,7 @@ div.form-content {
    color: white;
 }
 
-input#user-name, input#password{
+input#user-name, input#password, input#email, input#confirm-password{
    background-color: #552377;
    border: 0px;
    color: white;
