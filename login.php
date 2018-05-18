@@ -10,6 +10,7 @@ include('header.php');
 <div class = "content">
 
 <?php
+   echo $_SESSION['user-name'];
    $user -> login();
 ?>
 

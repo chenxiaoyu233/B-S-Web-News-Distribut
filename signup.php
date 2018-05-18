@@ -10,12 +10,13 @@ include('header.php');
 <?php
 //处理验证邮件 
 if($_SERVER['REQUEST_METHOD'] == "GET"){
-   if(!isset($_GET['activeKey'])){
+   if(isset($_GET['activeKey'])){
 	  $user -> active();
    }
 }
 
 //处理注册
+//echo $user -> userName;
 $user -> register();
 ?>
 

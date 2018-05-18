@@ -47,7 +47,7 @@ TAIL;
 	  //检验用户名和密码
 	  global $db;
 	  $info = $db -> query(
-		 "select * from User" .
+		 "select * from User " .
 		 "where userName = \"" . $_POST['user-name'] . "\""
 	  );
 	  if($info -> num_rows == 0){
@@ -70,10 +70,9 @@ TAIL;
 		 return false;
 	  }
 
-	  echo $_SESSION['user-name'];
 	  $info = $db -> query(
-		 "select userName" .
-		 "from User" . 
+		 "select userName, permission " .
+		 "from User " . 
 		 "where userName = \"" . $_SESSION['user-name'] . "\""
 	  );
 	  session_write_close();
@@ -85,12 +84,16 @@ TAIL;
 	  //成功登陆
 	  $info -> data_seek(0);
 	  $row = $info -> fetch_assoc();
-	  $this -> $userName = $row['userName'];
-	  $this -> $permission = $row['permission'];
-	  $this -> $status = "online";
+	  $this -> userName = $row['userName'];
+	  $this -> permission = $row['permission'];
+	  $this -> status = "online";
 	  return true;
    }
    public function login(){
+	  if( $this -> status == 'online'){
+		 ob_end_clean();
+		 header('Location: ./index.php');
+	  }
 	  if( !$this -> login_with_session() && //使用session登陆失败
 		  !$this -> check_login_info() ) {  //使用账号密码登陆失败
 			return; //登陆失败
@@ -115,8 +118,8 @@ TAIL;
 
 	  global $db;
 	  $info = $db -> query(
-		 "select email" .
-		 "from UserMeta" .
+		 "select email " .
+		 "from UserMeta " .
 		 "where email = \"" . $_POST['email'] . "\""
 	  );
 	  if($info -> num_rows != 0){
@@ -138,11 +141,10 @@ TAIL;
 	  //判断用户名是否已经用过
 	  global $db;
 	  $info = $db -> query(
-		 "select userName" . 
-		 "from User" . 
+		 "select userName " . 
+		 "from User " . 
 		 "where userName = \"" . $_POST['user-name'] . "\""
-	  );
-	  if($info -> num_rows != 0) {
+	  ); if($info -> num_rows != 0) {
 		 $this -> print_error_message("用户名已存在");
 		 return false;
 	  }
@@ -197,13 +199,23 @@ TAIL;
 	  $message = "    Dear " . $this -> userName . 
 	  ", you need to verify your account by clicking the " . 
 	  "<a href=\"". 
+	  $_SERVER['SERVER_NAME'] . "/" . SITE_ROOT .
 	  "signup.php?activeKey=" . $activeKey .
-	  "\">link</a>" . "</br>\n" .
+	  "\">link</a>. " . "</br>\n" .
 	  "Or your account will be delete within a minute.";
 	  $subject = "Verify Your Account";
-	  mail($_POST['email'], $subject, $message);
+	  //mail($_POST['email'], $subject, $message);
+	  global $mail;
+	  $mail -> Subject = $subject;
+	  $mail -> Body = $message;
+	  $mail -> addAddress($_POST['email']);
+	  $mail -> send();
    }
    public function register(){
+	  if( $this -> status == 'online') {
+		 ob_end_clean();
+		 header('Location: ./index.php');
+	  }
 	  if( !$this -> check_register_info()){
 		 return; //注册失败
 	  }
@@ -211,6 +223,7 @@ TAIL;
 	  //需要给用户发送cookie, 用于之后的验证 -> TODO
 	  //activeKey没有和数据库中的数据判重复 -> TODO
 	  $activeKey = bin2hex(random_bytes(100));
+	  $this -> send_verify_email($activeKey); //先发邮件, 免得有时间问题
 	  global $db;
 	  $db -> query(
 		 "insert into User(userName, password, permission) values " .
@@ -226,7 +239,6 @@ TAIL;
 	  );
 	  $this -> set_userName_from_post();
 	  $this -> add_session(); // 向用户发送session
-	  $this -> send_verify_email($activeKey);
 	  ob_end_clean();
 	  header('Location: ./index.php');
    }
@@ -235,9 +247,9 @@ TAIL;
    public function active(){ 
 	  global $db;
 	  $info = $db -> query(
-		 "select userName" .
-		 "from UnActiveUser" .
-		 "where activeKey = \"" . $_GET['activeKey'] . "\""
+		 "select userName " .
+		 "from UnActiveUser " .
+		 "where activeCode = \"" . $_GET['activeKey'] . "\""
 	  );
 	  if($info -> num_rows == 0){ // 不存在这个激活码(防止搞事)
 		 return false;
@@ -248,7 +260,7 @@ TAIL;
 	  $this -> add_session(); // 验证完成后保持在线
 
 	  $db -> query(
-		 "delete from UnActiveUser" . 
+		 "delete from UnActiveUser " . 
 		 "where userName = \"" . $row['userName'] . "\""
 	  );
 
