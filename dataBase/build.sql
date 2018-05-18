@@ -3,7 +3,7 @@ set foreign_key_checks = 0;
 drop table if exists User;
 create table User (
 	userName varchar(20) primary key,
-	password varchar(20) not null,
+	password varchar(255) not null, -- 密码需要hash, 所以需要这么长
 	permission enum('root', 'admin', 'user', 'other') not null
 ) charset utf8;
 
@@ -12,7 +12,7 @@ create table UserMeta (
 	userName varchar(20),
 	nickName varchar(20),
 	photo mediumblob, 
-	email varchar(40), 
+	email varchar(255), 
 	phoneNumber varchar(20),
 	birthDay date,
 	sex varchar(1),
@@ -21,6 +21,28 @@ create table UserMeta (
 	on delete cascade
 	-- userName 不允许修改, 故不加on update选项
 ) charset utf8;
+
+drop table if exists UnActiveUser;
+create table UnActiveUser (
+	userName varchar(20) primary key,
+	activeCode varchar(255) not null,
+	addTime timestamp not null,
+	foreign key (userName) references User(userName)
+	on delete cascade
+) charset utf8;
+
+-- 每经过一分钟, 就清理一次UnActiveUser
+drop event if exists CleanUnActiveUser;
+set @@global.event_scheduler = 1; -- 打开系统的事件调度器 -> todo : 添加到my.cnf中
+create event CleanUnActiveUser
+on schedule every 1 minute
+do
+	delete from User
+	where userName in (
+		select userName from UnActiveUser
+		where timestampdiff(minute, addTime, now()) >= 5
+	);
+	-- 注意timustampdiff函数使用最后一个参数的时间剪去中间参数的时间
 
 drop table if exists Follow;
 create table Follow (
