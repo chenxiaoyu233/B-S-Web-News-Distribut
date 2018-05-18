@@ -1,6 +1,6 @@
 <?php
 require_once('setting.php');
-define(TITLE, 'Chenxiaoyu\'s Web News -- 注册');
+define('TITLE', 'Chenxiaoyu\'s Web News -- 注册');
 include('header.php');
 ?>
 
@@ -8,8 +8,15 @@ include('header.php');
 <div class="content">
 
 <?php
-   //echo preg_match("/^[_0-9a-zA-Z]+@[_0-9a-zA-Z]+\.[a-zA-Z]+$/", "a@b.c");
-   $user -> register();
+//处理验证邮件 
+if($_SERVER['REQUEST_METHOD'] == "GET"){
+   if(!isset($_GET['activeKey'])){
+	  $user -> active();
+   }
+}
+
+//处理注册
+$user -> register();
 ?>
 
     <form action="./signup.php" method="post" class="signup">
@@ -44,5 +51,5 @@ include('header.php');
 </div>
 
 <?php
-    include('footer.php');
+include('footer.php');
 ?>

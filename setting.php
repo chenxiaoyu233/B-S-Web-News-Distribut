@@ -1,4 +1,5 @@
 <?php
+   ob_start(); //输出缓冲
    require('config.php');
    //dataBase
    $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -14,4 +15,5 @@
 
    //set User;
    $user = new User();
+   $user -> login_with_session(); //在任何页面都可以使用session登陆
 ?>

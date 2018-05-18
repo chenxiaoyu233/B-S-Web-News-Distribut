@@ -1,5 +1,3 @@
-<?php ob_start(); //输出缓冲?>
-
 <?php
 require_once('setting.php');
 define('TITLE', 'Chenxiaoyu\'s Web News -- 登陆');

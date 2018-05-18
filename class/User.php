@@ -3,14 +3,23 @@
 class User {
    public $userName;
    public $permission;
-   private $password;
+   public $status; // {online, offline} -> offline 需要重新登陆
 
    function __construct() {
-	  $userName = NULL;
-	  $permission = NULL;
-	  $password = NULL;
+	  $this -> userName = NULL;
+	  $this -> permission = 'other';
+	  $this -> status = 'offline';
    }
-
+   //从$_POST设定User类型的userName和password
+   private function set_userName_from_post(){
+	  if($_SERVER['REQUEST_METHOD'] != 'POST') return;
+	  if(!empty($_POST['user-name'])) $this -> userName = $_POST['user-name'];
+   }
+   private function add_session(){
+	  session_start();
+	  $_SESSION['user-name'] = $this -> userName;
+	  session_write_close();
+   }
    private function print_error_message($message){
 	  $head = <<<'HEAD'
 	  <div class = "error">
@@ -39,7 +48,7 @@ TAIL;
 	  global $db;
 	  $info = $db -> query(
 		 "select * from User" .
-		 "where userName = " . $_POST['user-name']
+		 "where userName = \"" . $_POST['user-name'] . "\""
 	  );
 	  if($info -> num_rows == 0){
 		 $this -> print_error_message("用户不存在");
@@ -53,13 +62,43 @@ TAIL;
 	  }
 	  return true;
    }
-   public function login(){
-	  if( !$this -> check_login_info() ) {
-		 return; //登陆失败
+   public function login_with_session(){ // todo -> 给session 加上时间限制
+	  session_start();
+	  global $db;
+	  if(!isset($_SESSION['user-name'])) {
+		 session_write_close(); // 记得关闭session文件占用
+		 return false;
 	  }
 
-	  //登陆成功
-	  //登陆之后记录信息 -> TODO : 需要实现一个接口用于发送cookie之类的东西
+	  echo $_SESSION['user-name'];
+	  $info = $db -> query(
+		 "select userName" .
+		 "from User" . 
+		 "where userName = \"" . $_SESSION['user-name'] . "\""
+	  );
+	  session_write_close();
+
+	  if($info -> num_rows == 0) {
+		 return false; // 用户不存在
+	  }
+
+	  //成功登陆
+	  $info -> data_seek(0);
+	  $row = $info -> fetch_assoc();
+	  $this -> $userName = $row['userName'];
+	  $this -> $permission = $row['permission'];
+	  $this -> $status = "online";
+	  return true;
+   }
+   public function login(){
+	  if( !$this -> login_with_session() && //使用session登陆失败
+		  !$this -> check_login_info() ) {  //使用账号密码登陆失败
+			return; //登陆失败
+		 }
+
+	  //登陆成功(使用账号密码登陆)
+	  $this -> set_userName_from_post();
+	  $this -> add_session(); //登陆之后记录信息
 	  ob_end_clean();
 	  header('Location: ./index.php');
    }
@@ -78,7 +117,7 @@ TAIL;
 	  $info = $db -> query(
 		 "select email" .
 		 "from UserMeta" .
-		 "where email = " . $_POST['email']
+		 "where email = \"" . $_POST['email'] . "\""
 	  );
 	  if($info -> num_rows != 0){
 		 $this -> print_error_message("这个邮箱已经被别人使用过了");
@@ -101,7 +140,7 @@ TAIL;
 	  $info = $db -> query(
 		 "select userName" . 
 		 "from User" . 
-		 "where userName = " . $_POST['user-name']
+		 "where userName = \"" . $_POST['user-name'] . "\""
 	  );
 	  if($info -> num_rows != 0) {
 		 $this -> print_error_message("用户名已存在");
@@ -154,13 +193,65 @@ TAIL;
 	  return true;
    }
 
+   private function send_verify_email($activeKey){
+	  $message = "    Dear " . $this -> userName . 
+	  ", you need to verify your account by clicking the " . 
+	  "<a href=\"". 
+	  "signup.php?activeKey=" . $activeKey .
+	  "\">link</a>" . "</br>\n" .
+	  "Or your account will be delete within a minute.";
+	  $subject = "Verify Your Account";
+	  mail($_POST['email'], $subject, $message);
+   }
    public function register(){
 	  if( !$this -> check_register_info()){
 		 return; //注册失败
 	  }
 
 	  //需要给用户发送cookie, 用于之后的验证 -> TODO
+	  //activeKey没有和数据库中的数据判重复 -> TODO
 	  $activeKey = bin2hex(random_bytes(100));
+	  global $db;
+	  $db -> query(
+		 "insert into User(userName, password, permission) values " .
+		 "(\"" . $_POST['user-name'] . "\", \"" . password_hash($_POST['password'], PASSWORD_DEFAULT) . "\", \"user\")"
+	  );
+	  $db -> query(
+		 "insert into UnActiveUser(userName, activeCode, addTime) values " . 
+		 "(\"" . $_POST['user-name'] . "\", \"" . $activeKey . "\", now())"
+	  );
+	  $db -> query(
+		 "insert into UserMeta(userName, email) values " .
+		 "(\"" . $_POST['user-name'] . "\", \"" . $_POST['email'] . "\")"
+	  );
+	  $this -> set_userName_from_post();
+	  $this -> add_session(); // 向用户发送session
+	  $this -> send_verify_email($activeKey);
+	  ob_end_clean();
+	  header('Location: ./index.php');
+   }
+
+   // 验证网页使用GET方法
+   public function active(){ 
+	  global $db;
+	  $info = $db -> query(
+		 "select userName" .
+		 "from UnActiveUser" .
+		 "where activeKey = \"" . $_GET['activeKey'] . "\""
+	  );
+	  if($info -> num_rows == 0){ // 不存在这个激活码(防止搞事)
+		 return false;
+	  }
+	  $info -> data_seek(0);
+	  $row = $info -> fetch_assoc();
+	  $this -> userName = row['userName'];
+	  $this -> add_session(); // 验证完成后保持在线
+
+	  $db -> query(
+		 "delete from UnActiveUser" . 
+		 "where userName = \"" . $row['userName'] . "\""
+	  );
+
 	  ob_end_clean();
 	  header('Location: ./index.php');
    }
