@@ -16,7 +16,7 @@
 		 <div class="head-function">
 			<a href="./login.php" class="login">登陆</a>
 			<a href="./signup.php" class="login">注册</a>
-			<a href="" class="login">撰写</a>
+			<a href="./write-article.php" class="login">撰写</a>
 
 			<!-- 用户相关下拉菜单 -->
 			<?php if ($user -> userName != NULL): ?>
@@ -42,7 +42,7 @@
 
 		 <!-- -->
 		 <div id="links">
-			<a class="title-content">主页</a>
+			<a class="title-content" href="./index.php">主页</a>
 			<a class="title-content">目录</a>
 		 </div>
 	  </nav>

@@ -61,6 +61,8 @@ div.author-mark {
    right: 0;
    text-align: center;
    top: 0;
+   z-index: 999;
+   background-color: rgb(118, 159, 234);
 }
 
 div.head-function {
@@ -165,6 +167,7 @@ footer {
 	left: 0px;
 	right: 0px;
 	color: white;
+	z-index: 999;
 }
 
 img#to-top {
