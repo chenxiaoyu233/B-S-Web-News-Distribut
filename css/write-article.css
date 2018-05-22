@@ -1,0 +1,20 @@
+
+.background {
+   color: black;
+}
+
+div.background {
+   background-color: none;
+   position: absolute;
+   top: 18%;
+   left: 5%;
+   right: 5%;
+}
+
+div.main-content {
+   background-color: white;
+}
+
+div.fill-space {
+   height: 50px;
+}

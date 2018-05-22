@@ -223,6 +223,7 @@ TAIL;
 	  //需要给用户发送cookie, 用于之后的验证 -> TODO
 	  //activeKey没有和数据库中的数据判重复 -> TODO
 	  $activeKey = bin2hex(random_bytes(100));
+	  $this -> set_userName_from_post();
 	  $this -> send_verify_email($activeKey); //先发邮件, 免得有时间问题
 	  global $db;
 	  $db -> query(
@@ -237,7 +238,6 @@ TAIL;
 		 "insert into UserMeta(userName, email) values " .
 		 "(\"" . $_POST['user-name'] . "\", \"" . $_POST['email'] . "\")"
 	  );
-	  $this -> set_userName_from_post();
 	  $this -> add_session(); // 向用户发送session
 	  ob_end_clean();
 	  header('Location: ./index.php');
