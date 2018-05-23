@@ -6,7 +6,9 @@ include('header.php');
 
 <div class="sadpanda">
    <img src="./image/sadpanda.jpg" alt="sadpanda" id="sadpanda">
-   <p>你可能忘记了登陆</p>
+   <?php if(isset($_GET['sentence'])): ?>
+	  <p> <?php echo $_GET['sentence']; ?> </p>
+   <?php endif; ?>
 </div>
 <style>
    div.sadpanda {
