@@ -80,6 +80,7 @@ class Article {
 		 "select * from Article ".
 		 "where articleID = \"" . $this -> articleID . "\""
 	  );
+
 	  if($info -> num_rows == 0) {
 		 ob_end_clean();
 		 header('Location: ./sad-panda.php?sentence=文章不存在');
@@ -131,7 +132,7 @@ class Article {
 	  $info -> data_seek(0);
 	  $row = $info -> fetch_assoc();
 	  global $user;
-	  if($row['userName'] != $user -> userName && $user -> permission != 'root') {
+	  if(isset($_GET['action']) && $_GET['action'] == 'edit' && $row['userName'] != $user -> userName && $user -> permission != 'root') {
 		 ob_end_clean();
 		 header('Location: ./sad-panda.php?sentence=这不是您的文章');
 		 return false;
@@ -142,7 +143,6 @@ class Article {
    }
 
    public function complete_info_from_database() {
-	  if(!$this -> get_articleID_from_GET()) return false;
 	  if(!$this -> get_info_from_table_Article()) return false;
 	  if(!$this -> get_info_from_table_ArticleMeta()) return false;
 	  if(!$this -> get_info_from_table_Manuscript()) return false;
@@ -151,11 +151,13 @@ class Article {
    }
 
    public function openArticle() {
-	  if(!$this -> complete_info_from_database()) return; // 获取文章信息失败
+	  if(!$this -> get_articleID_from_GET()) return false;
+	  if(!$this -> complete_info_from_database()) return false; // 获取文章信息失败
    }
 
    public function saveArticle() {
-	  if(!$this -> complete_info_from_database()) return; // 获取文章信息失败
+	  if(!$this -> get_articleID_from_GET()) return false;
+	  if(!$this -> complete_info_from_database()) return false; // 获取文章信息失败
 	  $this -> loadValues(); // 从post中获取当前的文章信息
 	  global $db;
 	  $db -> query(

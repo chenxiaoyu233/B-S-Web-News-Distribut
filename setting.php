@@ -21,6 +21,9 @@ $user -> login_with_session(); //在任何页面都可以使用session登陆
 //set Article;
 $article = new Article();
 
+//set Page;
+$page = new Page();
+
 /* set email(SMTP) */
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

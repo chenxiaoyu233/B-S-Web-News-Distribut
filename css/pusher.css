@@ -1,0 +1,15 @@
+.pusher-background {
+   /* color: black; */
+   /* background-color: white;  */
+   position: absolute;
+   top: 18%;
+   left: 5%;
+   right: 5%;
+   color: white;
+   /* background-color: rgba(0, 0, 0, 70%); */
+}
+
+.tab-background {
+   background-color: rgba(0, 0, 0, 70%);
+   border-radius: 5px/5px;
+}
