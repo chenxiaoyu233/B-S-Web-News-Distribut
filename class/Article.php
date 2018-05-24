@@ -155,6 +155,17 @@ class Article {
 	  if(!$this -> complete_info_from_database()) return false; // 获取文章信息失败
    }
 
+   public function addBackSlash($str) {
+	  $ret = '';
+	  for($i = 0; $i < strlen($str); $i++) {
+		 $ret = $ret . $str[$i];
+		 if($str[$i] == '\\') {
+		    $ret = $ret . $str[$i];
+		 }
+	  }
+	  return $ret;
+   }
+
    public function saveArticle() {
 	  if(!$this -> get_articleID_from_GET()) return false;
 	  if(!$this -> complete_info_from_database()) return false; // 获取文章信息失败
@@ -168,11 +179,14 @@ class Article {
 		 'time = now() ' .
 		 'where articleID = "' . $this -> articleID . '"'
 	  );
+
 	  $db -> query(
+		 $this -> addBackSlash(
 		 'update ArticleMeta ' .
 		 'set ' .
 		 'articleContent = "' . $this -> articleContent . '" ' .
 		 'where articleID = "' . $this -> articleID . '"'
+		 )
 	  );
    }
 }

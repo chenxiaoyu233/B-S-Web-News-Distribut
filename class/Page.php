@@ -7,6 +7,7 @@ class Page {
 	  $indent . '</' . $tag . '>' . "\n";
    }
    public function genTagFromArray($tag, $content, $prop, $indent){
+	  $indent = '';
 	  $ret = $indent. "<$tag";
 	  foreach($prop as $key => $val){
 		 $ret = $ret . ' ' . $key . '="' . $val . '"';

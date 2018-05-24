@@ -24,6 +24,9 @@ $article = new Article();
 //set Page;
 $page = new Page();
 
+//set GETstate
+$getState = new GETstate();
+
 /* set email(SMTP) */
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

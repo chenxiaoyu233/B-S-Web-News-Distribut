@@ -5,6 +5,7 @@ require('setting.php');
 include('header.php');
 
 $pusher = new Pusher();
-$pusher -> genPush();
+echo $pusher -> genPush() -> toString();
 
 include('footer.php');
+?>
