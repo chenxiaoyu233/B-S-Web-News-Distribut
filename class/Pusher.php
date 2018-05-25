@@ -116,7 +116,11 @@ class Pusher {
 	  //TODO :: 封装一个Geter类用于传递GET信息
    }
 
-   public function genPush() {
+   public function genPush($query = 
+		 "select articleID from Article " .
+		 "where type = 'news' " .
+		 "order by time desc"
+   ) {
 	  //$this -> set_info_from_GET();
 	  echo <<<'TAG'
 	  <link rel="stylesheet" href="./css/pusher.css">
@@ -125,11 +129,7 @@ TAG;
 
 	  $startPos = ($this -> subpage - 1) * ($this -> articleNum);
 	  global $db;
-	  $info = $db -> query(
-		 "select articleID from Article " .
-		 "where type = 'news' " .
-		 "order by time desc"
-	  );
+	  $info = $db -> query($query);
 
 	  for($i = $startPos; $i < $info -> num_rows; $i++){
 		 $info -> data_seek($i);

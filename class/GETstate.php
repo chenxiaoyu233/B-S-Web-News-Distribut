@@ -15,7 +15,6 @@ class GETstate {
 	  if(defined('SITE_ROOT') && defined('SERVER_URL')){
 		  $this -> siteRoot = 'http://' . SERVER_URL . SITE_ROOT;
 	  }
-	  var_dump($this);
    }
 
    public function addBaseState($key, $val) {

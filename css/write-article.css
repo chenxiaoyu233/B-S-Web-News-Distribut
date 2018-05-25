@@ -31,9 +31,9 @@ div.fill-space {
    height: 90px;
 }
 
-input#submit-button {
+.button {
    border-radius: 0px;
-   float: right;
+   /* float: right; */
    background-color: gray;
    margin-top: 10px;
    height: 20px;
@@ -43,7 +43,38 @@ input#submit-button {
    transition-duration: 0.5s;
 }
 
-input#submit-button:hover {
+.button:hover {
    background-color: green;
    transition-duration: 0.5s;
 }
+
+input#submit-button {
+	float: right;
+}
+button#open-add-panel {
+	float: left;
+}
+button#add-material {
+	float: right;
+}
+
+div.add-panel-first{
+	background-color: rgba(0, 0, 0, 70%);
+	height: 400px;
+	position: fixed;
+	left: 30%;
+	right: 30%;
+	top: 300px;
+	display: none;
+	z-index: 2000;
+}
+
+.add-panel-second {
+	height: 355px;
+	background-color: rebeccapurple;
+	margin: auto;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
