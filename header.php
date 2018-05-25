@@ -5,6 +5,8 @@
 	  <meta charset="UTF-8">
 	  <title><?php print TITLE; ?></title>
 	  <link rel="stylesheet" href="./css/style.css">
+	<!-- <script type="text/javascript" async
+	  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async> -->
    </head>
 
    <body>

@@ -6,6 +6,9 @@
 </body>
 <script src="script/to-top.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="script/markdown-support.js"></script>
+
 <script type="text/x-mathjax-config">
    MathJax.Hub.Config({
 		 tex2jax: {
@@ -44,6 +47,4 @@
    });
 </script>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="script/markdown-support.js"></script>
 </html>

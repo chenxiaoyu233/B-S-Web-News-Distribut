@@ -27,6 +27,10 @@ p.content {
    padding-right: 20px;
 }
 
+p.content table{
+	color: white;
+}
+
 .tag-info {
    padding-left: 10px;
    padding-right: 10px;

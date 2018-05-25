@@ -13,3 +13,6 @@ define('MAIL_USER_NAME', '741117236@qq.com');
 define('MAIL_PASSWORD', 'cxcsrgairdqsbbgd');
 define('MAIL_SMTP_SREVER', 'smtp.qq.com');
 
+/* GETsate config */
+define('SERVER_URL', '192.168.128.135/');
+define('SITE_ROOT', 'chenxiaoyu/');

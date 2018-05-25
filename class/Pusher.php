@@ -39,7 +39,7 @@ class Pusher {
    }
 
    public function genPreviewFooter(){
-	  global $page;
+	  global $page, $user, $getState;
 	  $footer = new DOM(
 		 'div',
 		 array(
@@ -67,6 +67,22 @@ class Pusher {
 				  'class' => 'tag-link'
 			   ),
 			   $this -> article -> upVoteCount
+		   ),
+			$this -> article -> userName != $user -> userName ? NULL :
+			new DOM (
+				'a',
+				array (
+					'class' => 'tag-link',
+					'href' => $getState -> genNextURL(
+						array(
+							'action' => 'edit',
+							'articleID' => $this -> article -> articleID
+						),
+						0,
+						'write-article.php'
+					)
+				),
+				'edit'
 			)
 		 )
 	  );

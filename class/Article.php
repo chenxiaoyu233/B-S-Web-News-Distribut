@@ -51,9 +51,11 @@ class Article {
 	     "\"{$this -> title}\", now(), 0)"
 	  );
 	  $db -> query(
-	     'insert into ArticleMeta values( ' .
-	     "\"{$this -> articleID}\", " . 
-	     "\"{$this -> articleContent}\" )"
+		  $this -> addBackSlash(
+			 'insert into ArticleMeta values( ' .
+			 "\"{$this -> articleID}\", " . 
+			 "\"{$this -> articleContent}\" )"
+		 )
 	  );
 	  $db -> query(
 	     'insert into Manuscript values( ' .
@@ -181,12 +183,13 @@ class Article {
 	  );
 
 	  $db -> query(
-		 $this -> addBackSlash(
-		 'update ArticleMeta ' .
-		 'set ' .
-		 'articleContent = "' . $this -> articleContent . '" ' .
-		 'where articleID = "' . $this -> articleID . '"'
-		 )
+	     $this -> addBackSlash(
+	     'update ArticleMeta ' .
+	     'set ' .
+	     'articleContent = "' . $this -> articleContent . '" ' .
+	     'where articleID = "' . $this -> articleID . '"'
+	     )
 	  );
    }
 }
+
