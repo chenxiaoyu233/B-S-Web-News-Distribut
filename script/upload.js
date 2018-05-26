@@ -6,6 +6,7 @@ var preview = document.querySelector('.add-panel-second');
 openAddPanel.onclick = function () {
 	if(addPanel.style.display == 'none'){
 		addPanel.style.display = 'block';
+		preview.innerHTML = '';
 	} else {
 		addPanel.style.display = 'none';
 	}
@@ -13,23 +14,15 @@ openAddPanel.onclick = function () {
 
 //拖放添加素材列表
 
-function output(text)
-{
-	document.querySelector(".add-panel").textContent += text;
-	//dump(text);
-}
-
 addPanel.ondragenter = function (event) {
-	//document.getElementById('output').textContent = ''; 
 	event.stopPropagation(); 
 	event.preventDefault();
-	console.log(1);
+	preview.innerHTML = '';
 };
 
 addPanel.ondragover = function (event) {
 	event.stopPropagation(); 
 	event.preventDefault();
-	console.log(2);
 };
 
 addPanel.ondrop = function (event) {
@@ -50,7 +43,6 @@ function handleFile(file) {
 	img.classList.add('preview-img');
 	img.file = file;
 	preview.appendChild(img);
-	img.style.width = window.innerWidth * 0.4 - 10 + 'px';
 	console.log(img.style.width);
 
 	var reader = new FileReader();

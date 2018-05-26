@@ -22,7 +22,7 @@ class GETstate {
    }
 
    public function genNextURL($newState = NULL, $mergeFlag = 0, $newUrl = NULL) {
-	  $submitState = $nextBaseState;
+	  $submitState = $this -> nextBaseState;
 	  if($newState != NULL) foreach($newState as $key => $val) $submitState[$key] = $val;
 	  if($mergeFlag) foreach($this -> curState as $key => $val) $submitState[$key] = $val;
 	  $ret = $newUrl != NULL ? $this -> siteRoot . $newUrl : $this -> curUrl;

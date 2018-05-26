@@ -51,12 +51,19 @@ if(!empty($_POST['article-title']) && !empty($_POST['article-content'])) {
 	        <h2>Content</h2>
 			<textarea id="article-content" name="article-content"><?php echo $article -> articleContent; ?> </textarea>
 			<button type="button" class="button" id="open-add-panel">Add Material</button>
+			<button type="button" class="button" id="open-select-panel">Select Material</button>
 			<input type="submit" name="submit" value="Submit" class="button" id="submit-button"> 
 	     </form>
 		<div class="add-panel-first">
 			<div class="add-panel-second">
 			</div>
 			<button type="button" class="button" id="add-material">submit</button>
+		</div>
+		<div class="select-panel-first">
+			<div class="select-panel-second">
+			</div>
+			<button type="button" class="button" id="pre">pre</button>
+			<button type="button" class="button" id="next">next</button>
 		</div>
    </div>
    <div class="fill-space"> </div>
@@ -75,6 +82,8 @@ if(!empty($_POST['article-title']) && !empty($_POST['article-content'])) {
 <script src="node_modules/codemirror/keymap/vim.js"></script>
 <script src="script/editor.js"> </script>
 <script src="script/upload.js"> </script>
+<script src="script/upload-select.js"> </script>
+<!-- <script src="script/add-pic-to-article.js"> </script> -->
 
 <!-- 当没有初始类容的时候,为了美观,在编辑器内添加一些空行 -->
 <?php if ($article -> articleContent == NULL): ?>

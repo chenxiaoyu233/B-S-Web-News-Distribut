@@ -131,10 +131,13 @@ TAG;
 	  global $db;
 	  $info = $db -> query($query);
 
-	  for($i = $startPos; $i < $info -> num_rows; $i++){
-		 $info -> data_seek($i);
-		 $row = $info -> fetch_assoc();
-		 $dom -> appendChildNode($this -> genPreviewOfPage($row['articleID']));
+	  for($i = 0; $i < $this -> articleNum; $i++){
+		  $cur = $i + $startPos;
+		  if($cur >= $info -> num_rows) break;
+
+		  $info -> data_seek($cur);
+		  $row = $info -> fetch_assoc();
+		  $dom -> appendChildNode($this -> genPreviewOfPage($row['articleID']));
 	  }
 
 	  return $dom;

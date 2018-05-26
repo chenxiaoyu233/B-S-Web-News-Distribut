@@ -3,6 +3,11 @@ html {
     background-image: url(../image/site-background.jpg);
 }
 
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
 a, h2 {
    color: white;
 }

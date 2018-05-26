@@ -48,33 +48,47 @@ div.fill-space {
    transition-duration: 0.5s;
 }
 
-input#submit-button {
+input#submit-button, button#next {
 	float: right;
 }
-button#open-add-panel {
+button#open-add-panel, button#pre {
 	float: left;
 }
 button#add-material {
 	float: right;
 }
+button#open-select-panel{
+	float: left;
+	margin-left: 5px;
+}
 
-div.add-panel-first{
+div.add-panel-first, div.select-panel-first{
 	background-color: rgba(0, 0, 0, 70%);
 	height: 400px;
 	position: fixed;
-	left: 30%;
-	right: 30%;
+	left: 50%;
+	width: 340px;
+	transform: translate(-50%,0%);
 	top: 300px;
 	display: none;
 	z-index: 2000;
 }
 
-.add-panel-second {
+.add-panel-second, div.select-panel-second{
 	height: 355px;
 	background-color: rebeccapurple;
 	margin: auto;
 	margin-top: 5px;
 	margin-left: 5px;
 	margin-right: 5px;
+}
+
+.select-pic {
+	width: 100px;
+	height: 100px;
+}
+
+span.material-card {
+	margin-left: 5px;
 }
 

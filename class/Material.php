@@ -51,13 +51,58 @@ class Material{
 		);
 		$info -> data_seek(0);
 		$ID = $info -> fetch_assoc()['UUID()'];
-		echo $ID;
 		if(!$db -> query(
 			"insert into Material values
-			('" . $ID . "', '" . $name . "', '" . 
+			('" . $ID . "', '" . $name . "', " . "now(), '" .
 			addslashes($content) . "')"
 		)) {
 			echo $db -> errno . ', ' . $db -> error;
 		}
+	}
+
+	public function genMaterialItem($row) {
+		global $getState;
+		$item = new DOM(
+			'span',
+			array(
+				'class' => 'material-card'
+			),
+			NULL,
+			array(
+				new DOM(
+					'img',
+					array(
+						'class' => 'select-pic',
+						'src' => $getState -> genNextURL(
+							array(
+								'materialID' => $row['materialID']
+							),
+							0,
+							'show-pic.php'
+						),
+						'alt' => $row['materialFileName'],
+						'title' => $row['materialFileName']
+					)
+				)
+			)
+		);
+		return $item;
+	}
+
+	public function listMaterial($curPage, $listNum) {
+		$curPos = $curPage * $listNum;
+		global $db;
+		$dom = new DOM();
+		$info = $db -> query( 
+			"select * from Material 
+			 order by uploadTime desc"
+		);
+		for($i = 0; $i < $listNum; $i++){
+			$cur = $i + $curPos;
+			if($cur >= $info -> num_rows) break;
+			$info -> data_seek($cur);
+			$dom -> appendChildNode($this -> genMaterialItem($info -> fetch_assoc()));
+		}
+		return $dom;
 	}
 }
