@@ -13,6 +13,6 @@ if(isset($_GET['materialID'])){
 	$info -> data_seek(0);
 	$content = $info -> fetch_assoc()['materialContent'];
 	ob_end_clean();
-	header('Content-Type: image/png');
+	header('Content-Type: image/');
 	echo $content;
 }
