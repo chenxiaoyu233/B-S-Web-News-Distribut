@@ -53,4 +53,24 @@ if($_GET['type'] == 'upvote'){
 	$info -> data_seek(0);
 	$row = $info -> fetch_assoc();
 	echo $row['tot'];
+} else if($_GET['type'] == 'countFollow'){
+	$info = $db -> query(
+		"select count(*) as tot from Follow
+		 where beFollowerID = '" . $_GET['target'] . "'"
+	);
+	$info -> data_seek(0);
+	$row = $info -> fetch_assoc();
+	echo $row['tot'];
+} else if($_GET['type'] == 'sumUpVote') {
+	$info = $db -> query(
+		"select count(*) as tot
+		 from (
+			 select userName as author, articleID from
+			 Manuscript natural join Article
+			 where userName = '" . $_GET['target'] . "'
+		 ) as tb1 natural join Collection"
+	);
+	$info -> data_seek(0);
+	$row = $info -> fetch_assoc();
+	echo $row['tot'];
 }

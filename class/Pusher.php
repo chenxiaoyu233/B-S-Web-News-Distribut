@@ -71,7 +71,7 @@ class Pusher {
 								new DOM (
 									'img',
 									array(
-										'id' => 'follow-pic',
+										'class' => 'follow-pic',
 										'alt' => $this -> article -> userName,
 										'src' => $getState -> genNextURL(NULL, 0, $target)
 									),
@@ -131,7 +131,7 @@ class Pusher {
 								new DOM(
 									'img',
 									array(
-										'id' => 'vote-pic',
+										'class' => 'vote-pic',
 										'alt' => $this -> article -> articleID,
 										'src' => $getState -> genNextURL(NULL, 0, $target)
 									)
@@ -146,8 +146,7 @@ class Pusher {
 								new DOM(
 									'a',
 									array(
-										'class' => 'tag-link',
-										'id' => 'up-vote-count'
+										'class' => 'up-vote-count'
 									),
 									$this -> article -> getUpVoteCount()
 								)

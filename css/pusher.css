@@ -50,16 +50,16 @@ a.tag-link {
 	text-align: center;
 }
 
-img#follow-pic {
+img.follow-pic {
 	height: 30px;
 	float: right;
 }
 
-img#vote-pic {
+img.vote-pic {
 	height: 30px;
 	float: right;
 }
 
-table a.tag-link {
+table a.tag-link, .up-vote-count{
 	float: left;
 }

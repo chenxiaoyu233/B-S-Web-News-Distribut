@@ -143,8 +143,11 @@ class UserMeta {
 		global $db, $getState;
 		$info = $db -> query(
 			"select count(*) as tot
-			 from Collection natural join Article
-			 where userName = '" . $this -> inner['userName'] . "'"
+			from (
+				select userName as author, articleID from
+				Manuscript natural join Article
+				where userName = '" . $this -> inner['userName'] . "'
+			) as tb1 natural join Collection"
 		);
 		$info -> data_seek(0);
 		$row = $info -> fetch_assoc();
