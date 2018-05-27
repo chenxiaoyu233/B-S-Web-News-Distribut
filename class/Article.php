@@ -6,7 +6,6 @@ class Article {
    public $articleStatus;
    public $title;
    public $time;
-   public $upVoteCount;
 
    public $articleContent;
    public $userName; //author
@@ -17,7 +16,6 @@ class Article {
 	  $this -> articleStatus = NULL;
 	  $this -> title = NULL;
 	  $this -> time = NULL;
-	  $this -> upVoteCount = NULL;
 
 	  $this -> articleContent = NULL;
 	  $this -> userName = NULL; //author
@@ -95,7 +93,6 @@ class Article {
 	  $this -> articleStatus = $row['articleStatus'];
 	  $this -> title = $row['title'];
 	  $this -> time = $row['time'];
-	  $this -> upVoteCount = $row['upVoteCount'];
 	  return true;
    }
 
@@ -186,6 +183,17 @@ class Article {
 	     'articleContent = "' . addslashes($this -> articleContent) . '" ' .
 	     'where articleID = "' . $this -> articleID . '"'
 	  );
+   }
+
+   public function getUpVoteCount(){
+	   global $db;
+	   $info = $db -> query(
+		   "select count(*) as tot from Collection
+		   where articleID = '" . $this -> articleID . "'"
+	   );
+	   $info -> data_seek(0);
+	   $row = $info -> fetch_assoc();
+	   return $row['tot'];
    }
 }
 
