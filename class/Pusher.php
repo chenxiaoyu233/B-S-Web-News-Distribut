@@ -72,6 +72,7 @@ class Pusher {
 									'img',
 									array(
 										'id' => 'follow-pic',
+										'alt' => $this -> article -> userName,
 										'src' => $getState -> genNextURL(NULL, 0, $target)
 									),
 									NULL
@@ -131,6 +132,7 @@ class Pusher {
 									'img',
 									array(
 										'id' => 'vote-pic',
+										'alt' => $this -> article -> articleID,
 										'src' => $getState -> genNextURL(NULL, 0, $target)
 									)
 								)
@@ -144,7 +146,8 @@ class Pusher {
 								new DOM(
 									'a',
 									array(
-										'class' => 'tag-link'
+										'class' => 'tag-link',
+										'id' => 'up-vote-count'
 									),
 									$this -> article -> getUpVoteCount()
 								)
@@ -247,7 +250,13 @@ TAG;
 			$row = $info -> fetch_assoc();
 			$dom -> appendChildNode($this -> genPreviewOfPage($row['articleID']));
 		}
-
+		// 给每个push都添加一段js代码, 用于点赞/关注
+		$dom -> appendChildNode(new DOM(
+			'script',
+			array(
+				'src' => 'script/upvote-follow.js'
+			)
+		));
 		return $dom;
 	}
 }
