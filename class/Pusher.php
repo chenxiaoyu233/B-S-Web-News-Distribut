@@ -18,18 +18,37 @@ class Pusher {
 	}
 
 	public function genPreviewTitle(){
+		global $getState;
 		$title = new DOM(
 			'h2', 
 			array(
 				'class' => 'tag-title'
 			),
-			$this -> article -> title
+			NULL,
+			array(
+				new DOM(
+					'a',
+					array(
+						'href' => $getState -> genNextURL(
+							array(
+								'articleID' => $this -> article -> articleID
+							),
+							0,
+							'index.php'
+						)
+					),
+					$this -> article -> title
+				)
+			)
 		);
 		return $title;
 	}
 
 	public function genPreviewContent(){
-		$target = substr($this -> article -> articleContent, 0, $this -> genShortLength) . " \n### ......";
+		$tail = '';
+		if(strlen($this -> article -> articleContent) > $this -> genShortLength) 
+			$tail = " \n### ......";
+		$target = substr($this -> article -> articleContent, 0, $this -> genShortLength) . $tail;
 		$content= new DOM(
 			'p',
 			array(
@@ -203,7 +222,6 @@ class Pusher {
 		$this -> article = new Article();
 		$this -> article -> articleID = $articleID;
 		$this -> article -> complete_info_from_database();
-		global $page;
 
 		$tag = new DOM(
 			'div',
@@ -221,21 +239,23 @@ class Pusher {
 		return $tag;
 	}
 
-	public function set_info_from_GET() {
-		//TODO :: 封装一个Geter类用于传递GET信息
-	}
-
 	public function genPush($query = 
 		"select articleID from Article " .
 		"where type = 'news' " .
 		"order by time desc",
-		$title = NULL
+		$title = NULL,
+		$dmclass = 'pusher-background',
+		$dmid = 'pusher-background'
 	) {
 		//$this -> set_info_from_GET();
 		echo <<<'TAG'
 	  <link rel="stylesheet" href="./css/pusher.css">
 TAG;
-		$dom = new DOM('div', array('class' => 'pusher-background'), $title);
+		$dom = new DOM('div', array(
+			'class' => $dmclass,
+			'id' => $dmid
+
+		), $title);
 
 		$startPos = ($this -> subpage - 1) * ($this -> articleNum);
 		global $db;

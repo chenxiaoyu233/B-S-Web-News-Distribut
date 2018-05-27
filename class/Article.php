@@ -26,6 +26,10 @@ class Article {
 	  $this -> articleContent = $_POST['article-content'];
 	  global $user;
 	  $this -> userName = $user -> userName;
+	  $this -> type = 'news';
+	  if(isset($_GET['type'])){
+		  $this -> type = $_GET['type'];
+	  }
    }
 
    private function genArticleID () {
@@ -45,7 +49,7 @@ class Article {
 	  $db -> query(
 	     'insert into Article values( ' . 
 	     "\"{$this -> articleID}\", " . 
-	     '"news", "verify", ' .
+	     '"' . $this-> type . '", "verify", ' .
 	     "\"{$this -> title}\", now())"
 	  );
 	  $db -> query(
@@ -58,6 +62,13 @@ class Article {
 	     "\"{$this -> userName}\", " . 
 	     "\"{$this -> articleID}\" )"
 	  );
+	  if($_GET['action'] == 'comment' && isset($_GET['target'])){
+		  $db -> query(
+			  "insert into Comment values (
+			  '" . $_GET['target'] . "', 
+			  '" . $this -> articleID . "')"
+		  );
+	  }
 	  ob_end_clean();
 	  header('Location: ./write-article.php?action=edit&articleID=' . $this -> articleID);
    }

@@ -17,7 +17,6 @@ $action = 'new'; // default
 if(!empty($_GET['action'])) {
    $action = $_GET['action'];
 }
-
 if($action == 'edit') {
    $article -> openArticle();
 }
@@ -31,7 +30,7 @@ if(!empty($_POST['article-title']) && !empty($_POST['article-content'])) {
 
 // new article
 if(!empty($_POST['article-title']) && !empty($_POST['article-content'])) {
-   if($action == 'new') {
+   if($action == 'new' || $action == 'comment') {
 	  $article -> newArticle();
    }
 }
@@ -45,6 +44,8 @@ if(!empty($_POST['article-title']) && !empty($_POST['article-content'])) {
 		 <form action="./write-article.php<?php echo '?action=new'; ?>" method="post">
 		 <?php elseif ($action == 'edit'): ?>
 		<form action="./write-article.php<?php echo '?action=edit&articleID=' . $article -> articleID; ?>" method="post">
+		<?php elseif ($action == 'comment'): ?>
+		<form action= <?php echo $getState -> genNextURL(NULL, 1, 'write-article.php')?> method="post">
 		<?php endif; ?>
 	        <h2>Title</h2>
 			<p> <input id="article-title" name="article-title" value="<?php echo $article -> title; ?>"></input> </p>
