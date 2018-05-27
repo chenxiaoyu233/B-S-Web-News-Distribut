@@ -27,6 +27,10 @@ class UserMeta {
 	
 	public function genPhoto($id1 = 'profile-photo-panel', $id2 = 'profile-photo') {
 		global $getState;
+		$target = $getState -> genNextURL(NULL, 0, 'image/user.png');
+		if(!is_null($this -> inner['photo'])){
+			$target = $getState -> genNextURL(array('materialID' => $this -> inner['photo']), 0, 'show-pic.php');
+		}
 		$photo = new DOM(
 			'div',
 			array(
@@ -38,7 +42,7 @@ class UserMeta {
 					'img',
 					array(
 						'id' => $id2,
-						'src' => $getState -> genNextURL(NULL, 0, 'image/user.png')
+						'src' => $target
 					)
 				)
 			)
@@ -346,5 +350,37 @@ class UserMeta {
 			)
 		);
 		return $dom;
+	}
+
+
+	private function deal($str){
+		$ret = strlen($str) == 0 ? 'NULL' : "\"$str\"";
+		return $ret;
+	}
+
+	public function modifyProfile(){
+		global $db;
+		$info = $db -> query(
+			"select password from User
+			 where userName = '" . $this -> inner['userName'] . "'"
+		);
+		$info -> data_seek(0);
+		$row = $info -> fetch_assoc();
+		if(!password_verify($_POST['password'], $row['password'])){
+			ob_end_clean();
+			header('Location: ./sad-panda.php?sentence=密码错误');
+			return; 
+		}
+
+		$db -> query(
+			"update UserMeta set
+			 nickName = " . $this -> deal($_POST['nickName']) . ",
+			 photo = " . $this -> deal($_POST['photo']) . ",
+			 email = " . $this -> deal($_POST['email']) . ",
+			 sex = " . $this -> deal($_POST['sex']) . "
+			 where userName = '" . $this -> inner['userName'] . "'"
+		);
+		ob_end_clean();
+		header('Location: ./profile.php');
 	}
 }

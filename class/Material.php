@@ -51,6 +51,7 @@ class Material{
 		);
 		$info -> data_seek(0);
 		$ID = $info -> fetch_assoc()['UUID()'];
+		echo $ID; // 回显materialID
 		if(!$db -> query(
 			"insert into Material values
 			('" . $ID . "', '" . $name . "', " . "now(), '" .
