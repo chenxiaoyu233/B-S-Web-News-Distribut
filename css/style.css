@@ -3,150 +3,192 @@ html {
     background-image: url(../image/site-background.jpg);
 }
 
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a, h2 {
+   color: white;
+}
+
+a {
+   text-decoration: none;
+}
+
+a.profile {
+   background-color: none;
+}
+
+a.profile:hover { 
+   background-color: gray;
+}
+
+
+div.profile-hover-down {
+   height: 60px;
+   display: none;
+   padding: 0px;
+   float: right;
+   background: gray;
+   text-align: left;
+   position: absolute;
+   right: 0px;
+   z-index: 999;
+}
+
+a.profile:hover ~ div.profile-hover-down, div.profile-hover-down:hover {
+   display: block;
+}
+
+img#user-photo{
+   float: left
+}
+
+div.profile-hover-down ul{
+   list-style: none;
+   margin-top: 0px;
+   margin-bottom: 0px;
+   padding: 0px;
+   float: right;
+   padding-right: 10px;
+   margin-top: 5px;
+}
+
+div.profile-hover-down ul li{
+   height: 25px;
+   padding-left: 10px;
+}
+
+div.author-mark {
+   position: fixed;
+   left: 0;
+   right: 0;
+   text-align: center;
+   top: 0;
+   z-index: 999;
+   background-color: rgb(118, 159, 234);
+}
+
 div.head-function {
-    background-color: rgb(50, 50, 50);
-    right: 0;
-    left: 0;
-    top: 0;
-    position: fixed;
-    padding: 0;
-    margin: 0;
-    border-width: 0;
-    max-height: 30px;
-    z-index: 999;
+   background-color: rgb(50, 50, 50);
+   right: 0;
+   left: 0;
+   top: 0;
+   /* position: fixed; */
+   padding: 0;
+   margin: 0;
+   border-width: 0;
+   max-height: 30px;
+   z-index: 999;
 }
 
 div.head-function a {
-    color: white;
-    position: relative;
-    padding: 0%;
-    margin: 0%;
-    transition-duration: 0.5s;
-    text-decoration-line: none;
+   color: white;
+   position: relative;
+   padding: 0%;
+   margin: 0%;
+   transition-duration: 0.5s;
+   text-decoration-line: none;
+}
+
+a.profile {
+   float: right;
 }
 
 a.login:hover {
-    background-color: mediumspringgreen;
-    border-radius: 5px/5px;
-    box-shadow: 5px 5px 5px rgb(10, 100, 10);
-    transition-duration: 0.5s;
-}
-
-img#welcome-pic {
-    border-radius: 50%;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    transition-duration: 1s;
-}
-
-img#welcome-pic:hover {
-    align-content: center;
-    width: 500px;
-    height: 500px;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    border-radius: 2%;
-    transition-duration: 1s;
+   background-color: mediumspringgreen;
+   border-radius: 5px/5px;
+   box-shadow: 5px 5px 5px rgb(10, 100, 10);
+   transition-duration: 0.5s;
 }
 
 nav.head {
-    background-color: #000000;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23222' stroke-width='10' %3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E");
-    margin-top: 20px;
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 0;
-    color: white;
-    z-index: 999;
-/*     max-height: 150px; */
+   background-color: #000000;
+   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23222' stroke-width='10' %3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E");
+   /* margin-top: 20px; */
+   position: fixed;
+   right: 0;
+   left: 0;
+   top: 100px;
+   color: white;
+   z-index: 999;
+   /*     max-height: 150px; */
 }
 
 nav.head h2 {
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 30px;
-    font-style: italic;
-    font-variant: small-caps;
-    margin: 30px;
-/*     margin: 0; 尝试用js修改这个属性*/ 
+   text-align: center;
+   font-family: 'Courier New', Courier, monospace;
+   font-size: 30px;
+   font-style: italic;
+   font-variant: small-caps;
+   margin: 30px;
+   /*     margin: 0; 尝试用js修改这个属性*/ 
 }
 
 div#h2 {
-    display: block;
-    transition-duration: 1s;
-    position: relative;
-/*     top: -50px;  */
-/*     max-height: 0; */
-    z-index: 1;
+   display: block;
+   transition-duration: 1s;
+   position: relative;
+   /*     top: -50px;  */
+   /*     max-height: 0; */
+   z-index: 1;
 }
 
 div#links {
-    display: flex;
-    background-color: gray;
+   display: flex;
+   background-color: gray;
 }
 
 div#links a{
-    margin: 0%;
-    padding: 0%;
-    flex: 10%;
+   margin: 0%;
+   padding: 0%;
+   flex: 10%;
 }
 
 a.title-content{
-    text-align: center;
-    transition-duration: 0.5s;
-    border-radius: 10px/10px;
+   text-align: center;
+   transition-duration: 0.5s;
+   border-radius: 10px/10px;
 }
 
 a.title-content:hover{
-    background-color: firebrick;
-    border-radius: 5px/5px;
-    box-shadow: 5px 5px 5px rgb(100, 10, 10);
-    transition-duration: 0.5s;
+	background-color: firebrick;
+	border-radius: 5px/5px;
+	box-shadow: 5px 5px 5px rgb(100, 10, 10);
+	transition-duration: 0.5s;
 }
 
 div.content{
-   position: absolute;
-   top: 150px;
-}
-
-ul#test {
-    display: none;
-    background-color: mediumslateblue;
-    position: absolute;
-}
-
-
-a.title-content:hover + ul#test, ul#test:hover {
-    display: block;
+	position: absolute;
+	top: 150px;
 }
 
 footer {
-    background-color: #291069;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='65' height='65' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23230e59' %3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='1'%3E%3Cpolygon fill='url(%23a)' points='100 30 0 0 200 0'/%3E%3Cpolygon fill='url(%23b)' points='100 100 0 130 0 100 200 100 200 130'/%3E%3C/g%3E%3C/svg%3E");
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    color: white;
+	background-color: #291069;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='65' height='65' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23230e59' %3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='1'%3E%3Cpolygon fill='url(%23a)' points='100 30 0 0 200 0'/%3E%3Cpolygon fill='url(%23b)' points='100 100 0 130 0 100 200 100 200 130'/%3E%3C/g%3E%3C/svg%3E");
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	color: white;
+	z-index: 999;
 }
 
 img#to-top {
-    position: relative;
-    float: right;
-    background-color: rgb(140, 186, 215);
-    border-radius: 50%;
-    bottom: 50px;
-    transition-duration: 0.3s;
+	position: relative;
+	float: right;
+	background-color: rgb(140, 186, 215);
+	border-radius: 50%;
+	bottom: 50px;
+	transition-duration: 0.3s;
 }
 
 img#to-top:hover {
-    background-color: rgb(180, 75, 14);
-    transition-duration: 0.3s;
+	background-color: rgb(180, 75, 14);
+	transition-duration: 0.3s;
 }
 
 input,button,a {
-       outline:0 none !important; blr:expression(this.onFocus=this.blur());
+	outline:0 none !important; blr:expression(this.onFocus=this.blur());
 }

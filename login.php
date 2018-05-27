@@ -10,8 +10,20 @@ include('header.php');
 <div class = "content">
 
 <?php
-   echo $_SESSION['user-name'];
-   $user -> login();
+
+// 用户登出
+if( $_SERVER['REQUEST_METHOD'] == 'GET') {
+   if( $_GET['action'] == 'logout' ){
+	  session_start();
+	  $_SESSION['user-name'] = '';
+	  session_write_close();
+	  header('Location ./index.php');
+   }
+}
+
+//用户登入
+$user -> login();
+
 ?>
 
    <form action="./login.php" method="post" class="login">

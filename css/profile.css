@@ -1,0 +1,175 @@
+
+.profile-background {
+	position: fixed;
+	top: 18%;
+	left: -490px;
+	width: 510px;
+	color: white;
+	z-index: 1;
+	transition-duration: 0.5s;
+}
+
+div#profile-left {
+	/* float: left; */
+	/* position: relative; */
+	position: absolute;
+	background-color: grey;
+	left: 0px;
+	top: 0px;
+	height: 250px;
+	width: 200px;
+}
+
+img#profile-photo {
+}
+
+div#profile-photo-panel {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 200px;
+	height: 200px;
+}
+
+div#below-photo {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 200px;
+	height: 50px;
+}
+
+img#sex-pic {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	bottom: 0px;
+	right: 0px;
+	background-color: deeppink;
+}
+
+
+div#nickname-panel {
+	position: absolute;
+	background-color: rebeccapurple;
+	left: 0px;
+	right: 50px;
+	max-height: 50px;
+	text-align: center;
+}
+
+div#profile-right {
+	/* float: right; */
+	position: absolute;
+	right: 0px;
+	left: 200px;
+	height: 250px;
+	top: 0px;
+	width: 290px;
+}
+
+div#email-panel {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	text-align: center;
+	background-color: chocolate;
+	height: 20px;
+}
+
+p#email {
+	margin: 0px;
+}
+
+div#below-email {
+	position: absolute;
+	height: 40px;
+	left: 0px;
+	right: 0px;
+	top: 20px;
+	background-color: lightslategrey;
+}
+
+div#vote-panel {
+	height: 40px;
+	position: absolute;
+	left: 0px;
+	right: 70%;
+}
+
+img#vote-img {
+	position: absolute;
+	background-color: darkseagreen;
+	left: 0px;
+	width: 40px;
+}
+
+.right-num {
+	text-align: center;
+	background-color: dodgerblue;
+	position: absolute;
+	right: 0px;
+	left: 40px;
+	top: 0px;
+	bottom: 0px;
+	margin: 0px;
+	padding: 10px;
+}
+
+div#follow-panel {
+	position: absolute;
+	left: 35%;
+	right: 35%;
+	height: 40px;
+}
+
+img#follow-img {
+	position: absolute;
+	left: 0px;
+	background: rebeccapurple;
+}
+
+div#article-num-panel {
+	position: absolute;
+	right: 0%;
+	left: 70%;
+	height: 40px;
+}
+
+img#article-num-img {
+	position: absolute;
+	left: 0px;
+	width: 40px;
+	background-color: burlywood;
+}
+
+div#below-below-email {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	height: 190px;
+	top: 60px;
+}
+
+div#below-blow {
+	top: 0px;
+	height: 190px;
+	text-align: center;
+}
+
+div#control-panel {
+	position: absolute;
+	right: 0px;
+	width: 20px;
+}
+
+img#close {
+	background-color: #03A9F4;
+
+}
+
+img#edit {
+	background-color: green;
+	display: none;
+}
