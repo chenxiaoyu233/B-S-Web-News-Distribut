@@ -9,6 +9,17 @@ $userMeta = new UserMeta($user -> userName);
 <?php
 
 echo $userMeta -> genProfile() -> toString();
-include('footer.php');
 
+$pusher = new Pusher();
+echo $pusher -> genPush(
+	"select articleID
+	 from Article natural join Manuscript
+	 where userName = '" . $user -> userName . "'",
+	"<p>他的投稿</p>"
+) -> toString();
+
+?>
+<script src="script/profile-control.js"> </script>
+<?php
+include('footer.php');
 ?>

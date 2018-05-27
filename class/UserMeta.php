@@ -25,19 +25,19 @@ class UserMeta {
 		$this -> get_info_from_database();
 	}
 	
-	public function genPhoto() {
+	public function genPhoto($id1 = 'profile-photo-panel', $id2 = 'profile-photo') {
 		global $getState;
 		$photo = new DOM(
 			'div',
 			array(
-				'id' => 'profile-photo-panel'
+				'id' => $id1
 			),
 			NULL,
 			array(
 				new DOM(
 					'img',
 					array(
-						'id' => 'profile-photo',
+						'id' => $id2,
 						'src' => $getState -> genNextURL(NULL, 0, 'image/user.png')
 					)
 				)
@@ -138,11 +138,9 @@ class UserMeta {
 	public function genGoodNum(){
 		global $db, $getState;
 		$info = $db -> query(
-			"select sum(upVoteCount) as tot
-			 from Article natural join (
-				select * from Manuscript
-				where userName = '" . $this -> inner['userName'] . "'
-             ) as manu"
+			"select count(*) as tot
+			 from Collection natural join Article
+			 where userName = '" . $this -> inner['userName'] . "'"
 		);
 		$info -> data_seek(0);
 		$row = $info -> fetch_assoc();
@@ -306,6 +304,34 @@ class UserMeta {
 		return $right;
 	}
 
+	public function genControl(){
+		global $getState;
+		$control = new DOM(
+			'div',
+			array(
+				'id' => 'control-panel'
+			),
+			NULL,
+			array(
+				new DOM(
+					'img',
+					array(
+						'id' => 'close',
+						'src' => $getState -> genNextURL(NULL, 0, 'image/switch.png')
+					)
+				),
+				new DOM(
+					'img',
+					array(
+						'id' => 'edit',
+						'src' => $getState -> genNextURL(NULL, 0, 'image/pencil.png')
+					)
+				)
+			)
+		);
+		return $control;
+	}
+
 	public function genProfile(){
 		$dom = new DOM(
 			'div',
@@ -315,7 +341,8 @@ class UserMeta {
 			NULL,
 			array(
 				$this -> genLeft(),
-				$this -> genRight()
+				$this -> genRight(),
+				$this -> genControl()
 			)
 		);
 		return $dom;

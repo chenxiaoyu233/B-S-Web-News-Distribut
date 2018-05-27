@@ -1,12 +1,12 @@
+
 .profile-background {
 	position: fixed;
 	top: 18%;
-	left: 0px;
-	width: 490px;
+	left: -490px;
+	width: 510px;
 	color: white;
-	background-color: rgba(100%, 100%, 100%, 70%);
-	box-shadow: 2px 2px 2px rgb(0,0,0);
-
+	z-index: 1;
+	transition-duration: 0.5s;
 }
 
 div#profile-left {
@@ -75,6 +75,7 @@ div#below-email {
 	left: 0px;
 	right: 0px;
 	top: 20px;
+	background-color: lightslategrey;
 }
 
 div#vote-panel {
@@ -142,4 +143,19 @@ div#below-blow {
 	top: 0px;
 	height: 190px;
 	text-align: center;
+}
+
+div#control-panel {
+	position: absolute;
+	right: 0px;
+	width: 20px;
+}
+
+img#close {
+	background-color: #03A9F4;
+
+}
+
+img#edit {
+	background-color: green;
 }

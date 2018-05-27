@@ -119,13 +119,14 @@ class Pusher {
    public function genPush($query = 
 		 "select articleID from Article " .
 		 "where type = 'news' " .
-		 "order by time desc"
+		 "order by time desc",
+		 $title = NULL
    ) {
 	  //$this -> set_info_from_GET();
 	  echo <<<'TAG'
 	  <link rel="stylesheet" href="./css/pusher.css">
 TAG;
-	  $dom = new DOM('div', array('class' => 'pusher-background'));
+	  $dom = new DOM('div', array('class' => 'pusher-background'), $title);
 
 	  $startPos = ($this -> subpage - 1) * ($this -> articleNum);
 	  global $db;

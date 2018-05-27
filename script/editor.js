@@ -23,3 +23,5 @@ var myArticleTitleCode = CodeMirror.fromTextArea(myArticleTitle, {
 var CM = document.querySelectorAll('.CodeMirror');
 CM[0].style.height = '2em';
 CM[1].style.height = 'auto';
+
+myArticleContentCode.setOption('lineWrapping', true);

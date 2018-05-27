@@ -48,7 +48,7 @@ class Article {
 	     'insert into Article values( ' . 
 	     "\"{$this -> articleID}\", " . 
 	     '"news", "verify", ' .
-	     "\"{$this -> title}\", now(), 0)"
+	     "\"{$this -> title}\", now())"
 	  );
 	  $db -> query(
 		 'insert into ArticleMeta values( ' .
