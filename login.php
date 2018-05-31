@@ -7,7 +7,7 @@ include('header.php');
 
 
 <link rel="stylesheet" href="./css/login.css">
-<div class = "content">
+<div class = "content-login">
 
 <?php
 

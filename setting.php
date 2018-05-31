@@ -27,6 +27,9 @@ $page = new Page();
 //set GETstate
 $getState = new GETstate();
 
+//set category
+$category = new Category('NULL');
+
 /* set email(SMTP) */
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

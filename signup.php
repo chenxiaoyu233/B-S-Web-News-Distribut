@@ -2,10 +2,11 @@
 require_once('setting.php');
 define('TITLE', 'Chenxiaoyu\'s Web News -- 注册');
 include('header.php');
+
 ?>
 
 <link rel="stylesheet" href="./css/login.css">
-<div class="content">
+<div class="content-login">
 
 <?php
 //处理验证邮件 
@@ -19,7 +20,6 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
 //echo $user -> userName;
 $user -> register();
 ?>
-
     <form action="./signup.php" method="post" class="signup">
 		<div class="form-content">
 		   电子邮箱
@@ -49,6 +49,7 @@ $user -> register();
 		   <input type="submit" name="submit" value="Sign Up" id="submit-button" style="width:60px;height:60px;">
    		</div>
     </form>
+
 </div>
 
 <?php

@@ -4,6 +4,10 @@
         </div>
     </footer>
 </body>
+
+<link rel="stylesheet" href="./css/category.css">
+<script src="script/category.js"></script>
+
 <script src="script/to-top.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
