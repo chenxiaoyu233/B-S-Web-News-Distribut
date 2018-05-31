@@ -22,7 +22,7 @@
 	max-height: 20px;
 }
 
-.fold-img, .add-category-button{
+.fold-img, .add-category-button, .remove-category-button{
 	max-width: 20px;
 	max-height: 20px;
 }
@@ -32,7 +32,7 @@
 	background-color: forestgreen;
 }
 
-.add-category-button {
+.add-category-button, .remove-category-button {
 	float: right;
 	background-color: crimson;
 	border-radius: 50%/50%;
@@ -40,6 +40,10 @@
 }
 
 .category-card:hover .add-category-button{
+	display: block;
+}
+
+.category-card:hover .remove-category-button{
 	display: block;
 }
 

@@ -35,6 +35,13 @@ class Category{
 						'class' => 'add-category-button',
 						'src' => $getState -> genNextURL(NULL, 0, 'image/add.png')
 					)
+				) : NULL,
+				$needAddButton ? new DOM(
+					'img',
+					array(
+						'class' => 'remove-category-button',
+						'src' => $getState -> genNextURL(NULL, 0, 'image/remove.png')
+					)
 				) : NULL
 			)
 		);
