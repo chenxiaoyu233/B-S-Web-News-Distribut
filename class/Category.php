@@ -99,4 +99,13 @@ class Category{
 			'" . $categoryName . "', " . $this -> addQuotes($fatherCategory) . ")"
 		);
 	}
+
+	public function removeCategory($categoryName){
+		global $db;
+		$info = $db -> query(
+			"delete from Category
+			 where categoryName = '" . $categoryName . "'"
+		); // 这里$categoryName 显然不可能是NULL.
+	}
+
 }

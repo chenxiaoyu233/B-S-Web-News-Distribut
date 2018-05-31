@@ -20,3 +20,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'add-category'){
 	);
 	echo $dom -> toString();
 }
+
+if(isset($_GET['action']) && $_GET['action'] == 'remove-category'){
+	$category -> removeCategory($_GET['categoryName']);
+}

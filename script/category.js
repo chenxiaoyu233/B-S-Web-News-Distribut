@@ -1,3 +1,7 @@
+//
+// add category
+//
+//
 var categoryContainerRoot = document.querySelector('.category-container-root');
 var categoryContainer = document.querySelectorAll('.category-container');
 var categoryCard = document.querySelectorAll('.category-card');
@@ -124,4 +128,46 @@ for(var i = 0; i < addCategoryButton.length; i++){
 	addCategoryButton[i].onclick = addCategoryButtonHandle;
 }
 
+//
+// show / hide the category list
+//
 
+var categoryHeadButton = document.getElementById('category-head-button');
+categoryHeadButton.onclick = function () {
+	if(categoryContainerRoot.style.left == ''){
+		categoryContainerRoot.style.left = '100%';
+	} else {
+		categoryContainerRoot.style.left = '';
+	}
+};
+
+
+//
+// delete items in the category
+//
+
+
+function deleteCategory(e){
+	var cur = e.target.parentElement.parentElement;
+	fold(cur);
+	var categoryName = cur.children[0].children[1].innerText;
+
+	var httpRequest = new XMLHttpRequest();
+	var reqGET = '?action=remove-category' + '&categoryName=' + categoryName;
+	httpRequest.open('GET', 'http://192.168.128.135/chenxiaoyu/category.php' + reqGET, true);
+
+	httpRequest.onreadystatechange = function () {
+		if(httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200){
+			addHeight(cur, -20);
+			cur.parentElement.removeChild(cur);
+		}
+	};
+
+	httpRequest.send();
+
+}
+
+var removeCategoryButton = document.querySelectorAll('.remove-category-button');
+for(var i = 0; i < removeCategoryButton.length; i++){
+	removeCategoryButton[i].onclick = deleteCategory;
+}
