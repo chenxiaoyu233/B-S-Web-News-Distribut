@@ -110,7 +110,7 @@ create table Category (
 	fatherCategory varchar(255), 
 	foreign key (fatherCategory) references Category(categoryName)
 	on update cascade -- 目录更新的时候级联
-	-- 删除目录的时候必须保证子目录下面没有东西了
+	on delete cascade -- 删除的时候同样级联
 ) charset utf8;
 
 drop table if exists Belong;
