@@ -9,7 +9,7 @@ class Pusher {
 	public $genShort;
 	public $genShortLength;
 
-	public function __construct($articleNum = 10, $subpage = 1, $genShort = true, $genShortLength = 500) {
+	public function __construct($articleNum = INDEX_ARTICLE_NUM, $subpage = 1, $genShort = true, $genShortLength = 500) {
 		$this -> articleNum = $articleNum; // 默认一个页面上面放置10篇文章
 		$this -> article = new Article();
 		$this -> subpage = $subpage; // 默认在第一页
@@ -241,7 +241,7 @@ class Pusher {
 
 	public function genPush($query = 
 		"select articleID from Article " .
-		"where type = 'news' " .
+		"where type = 'news'" .
 		"order by time desc",
 		$title = NULL,
 		$dmclass = 'pusher-background',

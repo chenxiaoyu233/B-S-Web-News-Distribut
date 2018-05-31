@@ -1,0 +1,83 @@
+.category-container-root {
+	position: fixed;
+	top: 18%;
+	right: 0px;
+	width: 200px;
+}
+
+.category-container{
+	display: block;
+	padding-left: 10px;
+	/* height: 0px; */
+}
+
+.category-container, .category-container-root{
+	background-color: blueviolet;	
+	overflow: hidden;
+	transition-duration: 1s;
+}
+
+.category-card {
+	background-color: cornflowerblue;
+	max-height: 20px;
+}
+
+.fold-img, .add-category-button, .remove-category-button{
+	max-width: 20px;
+	max-height: 20px;
+}
+
+.fold-img {
+	float:left;
+	background-color: forestgreen;
+}
+
+.add-category-button, .remove-category-button {
+	float: right;
+	background-color: crimson;
+	border-radius: 50%/50%;
+	display: none;
+}
+
+.category-card:hover .add-category-button{
+	display: block;
+}
+
+.category-card:hover .remove-category-button{
+	display: block;
+}
+
+.category-card:hover {
+	background-color: #3F51B5;
+}
+
+.category-link {
+	display: inline-block;
+	text-align: center;
+	margin-left: 20px;
+}
+
+
+input.category-input {
+	background-color: cornflowerblue;
+	width: calc(100% - 20px);
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	display: inline-block;
+	height: 20px;
+	color: white;
+	text-align: center;
+	float: left;
+}
+
+
+button.craete-category-button {
+	float: right;
+	width: 20px;
+	height: 20px;
+	background-color: coral;
+	border: 0px;
+}
+
+
