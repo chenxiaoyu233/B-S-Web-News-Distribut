@@ -7,19 +7,31 @@ create table User (
 	permission enum('root', 'admin', 'user', 'other') not null
 ) charset utf8;
 
+drop table if exists Material;
+create table Material (
+	materialID varchar(100) not null primary key,
+	materialFileName varchar(255) not null,
+	uploadTime datetime,
+	materialContent longblob
+) charset utf8;
+
+-- 因为Material表中的二进制文件比较大, 为了优化查询的时间,在这个表上面建立索引
+create index SpeedUpUsingBinary
+on Material(materialID);
+
 drop table if exists UserMeta;
 create table UserMeta (
 	userName varchar(20),
 	nickName varchar(20),
-	photo mediumblob, 
+	photo varchar(100),  -- materialID
 	email varchar(255), 
-	phoneNumber varchar(20),
-	birthDay date,
 	sex varchar(1),
 	primary key (userName),
 	foreign key (userName) references User(userName) 
-	on delete cascade
+	on delete cascade,
 	-- userName 不允许修改, 故不加on update选项
+	foreign key (photo) references Material(materialID)
+	on delete set null
 ) charset utf8;
 
 drop table if exists UnActiveUser;
@@ -58,22 +70,18 @@ create table Follow (
 
 drop table if exists Article;
 create table Article (
-	articleID varchar(20) primary key,
+	articleID varchar(100) primary key,
 	`type` enum('news', 'comment') not null,
 	articleStatus enum('accept', 'reject', 'verify') not null,
 	title text not null,
-	userName varchar(20) not null,
-	time datetime not null,
-	upVoteCount int not null default 0,
-	foreign key (userName) references User(userName) 
-	on delete cascade
-	-- userName 不允许修改, 故不加on update选项
+	time datetime not null
+	-- 添加了Manuscript表, 已经不需要引用userName了
 ) charset utf8;
 
 drop table if exists Manuscript;
 create table Manuscript (
 	userName varchar(20) not null,
-	articleID varchar(20) not null,
+	articleID varchar(100) not null,
 	primary key (userName, articleID),
 	foreign key (userName) references User(userName) 
 	on delete cascade,
@@ -86,7 +94,7 @@ create table Manuscript (
 drop table if exists Collection;
 create table Collection (
 	userName varchar(20) not null,
-	articleID varchar(20) not null,
+	articleID varchar(100) not null,
 	primary key (userName, articleID),
 	foreign key (userName) references User(userName) 
 	on delete cascade,
@@ -107,7 +115,7 @@ create table Category (
 
 drop table if exists Belong;
 create table Belong (
-	articleID varchar(20) not null,
+	articleID varchar(100) not null,
 	categoryName varchar(255) not null,
 	primary key (articleID, categoryName),
 	foreign key (articleID) references Article(articleID)
@@ -120,8 +128,9 @@ create table Belong (
 
 drop table if exists `Comment`;
 create table `Comment` (
-	articleID varchar(20) not null primary key,
-	commentID varchar(20) not null,
+	articleID varchar(100) not null,
+	commentID varchar(100) not null,
+	primary key (articleID, commentID),
 	foreign key (articleID) references Article(articleID) 
 	on delete cascade, -- 文章删除之后, 两者之间的comment关系消失
 	foreign key (commentID) references Article(articleID) 
@@ -130,17 +139,18 @@ create table `Comment` (
 
 drop table if exists ArticleMeta;
 create table ArticleMeta (
-	articleID varchar(20) not null primary key,
+	articleID varchar(100) not null primary key,
 	articleContent longtext,
 	foreign key (articleID) references Article(articleID) 
 	on delete cascade -- 在文章被删除的时候, 同时删除内容
 ) charset utf8;
 
-drop table if exists Material;
-create table Material (
-	materialID varchar(20) not null primary key,
-	materialFileName varchar(255) not null,
-	materialContent longblob
-) charset utf8;
-
 set foreign_key_checks = 1;
+
+-- 调试用账户
+insert into User values
+('chenxiaoyu', '$2y$10$yVoVdLnDuUEMAsxhlhqxruxepawlxa7Ml3wEP5sg6zfD1hlX1RDQ.', 'root');
+
+-- 添加调试用账户的UserMeta
+insert into UserMeta(userName) values
+('chenxiaoyu');
