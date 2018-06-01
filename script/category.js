@@ -28,8 +28,8 @@ function addHeight(curDiv, height){
 		addHeight(curDiv.parentElement, height);
 }
 
-var foldURL = 'http://192.168.128.135/chenxiaoyu/image/fold.png';
-var unfoldURL = 'http://192.168.128.135/chenxiaoyu/image/unfold.png';
+var foldURL = SITE_ROOT + 'image/fold.png';
+var unfoldURL = SITE_ROOT + 'image/unfold.png';
 
 function fold(curDiv){ // 一次性将所有子项全部关上
 	if(curDiv.dataset['fold'] == 1) return;
@@ -84,7 +84,7 @@ function addNewCategory(e) {
 
 	var httpRequest = new XMLHttpRequest();
 	var reqGET = '?action=add-category' + '&categoryName=' + categoryName + '&fatherCategory=' + fatherCatogory;
-	httpRequest.open('GET', 'http://192.168.128.135/chenxiaoyu/category.php' + reqGET, true);
+	httpRequest.open('GET', SITE_ROOT + 'category.php' + reqGET, true);
 
 	cur = e.target.parentElement;
 	fa = cur.parentElement;
@@ -160,7 +160,7 @@ function deleteCategory(e){
 
 	var httpRequest = new XMLHttpRequest();
 	var reqGET = '?action=remove-category' + '&categoryName=' + categoryName;
-	httpRequest.open('GET', 'http://192.168.128.135/chenxiaoyu/category.php' + reqGET, true);
+	httpRequest.open('GET', SITE_ROOT + 'category.php' + reqGET, true);
 
 	httpRequest.onreadystatechange = function () {
 		if(httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200){
@@ -199,7 +199,7 @@ function getArticleIdFromUrl(s){
 function categorySwitcher(curDiv, articleID, categoryName){
 	var httpRequest = new XMLHttpRequest();
 	var reqGET = '?action=add-belong' + '&categoryName=' + categoryName + '&articleID=' + articleID;
-	httpRequest.open('GET', 'http://192.168.128.135/chenxiaoyu/belong.php' + reqGET, true);
+	httpRequest.open('GET', SITE_ROOT + 'belong.php' + reqGET, true);
 
 	httpRequest.onreadystatechange = function () {
 		if(httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200){

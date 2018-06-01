@@ -26,7 +26,7 @@ function fetch_list() {
 	httpRequest = new XMLHttpRequest();
 	var reqGet = '?action=select' + '&' + 'cur-page=' + curPage;
 
-	httpRequest.open('GET', 'http://192.168.128.135/chenxiaoyu/upload.php' + reqGet, true);
+	httpRequest.open('GET', SITE_ROOT + 'upload.php' + reqGet, true);
 
 	httpRequest.onreadystatechange = function () {
 		if(httpRequest.readyState === XMLHttpRequest.DONE
