@@ -15,7 +15,6 @@ function prework(str){
 for( var i = 0; i <= contentList.length; i++) {
    var curContent = contentList[i];
    var text = marked(prework(curContent.innerHTML));
-   console.log(text);
    curContent.innerHTML = text;
 }
 

@@ -35,6 +35,10 @@ if(!empty($_POST['article-title']) && !empty($_POST['article-content'])) {
    }
 }
 
+if($action == 'edit') {
+	$category -> setArticleConstraint($_GET['articleID']);
+}
+echo $category -> genCategoryPanel() -> toString();
 ?>
 
 <link rel="stylesheet" href="./css/write-article.css">
@@ -47,7 +51,11 @@ if(!empty($_POST['article-title']) && !empty($_POST['article-content'])) {
 		<?php elseif ($action == 'comment'): ?>
 		<form action= <?php echo $getState -> genNextURL(NULL, 1, 'write-article.php')?> method="post">
 		<?php endif; ?>
+		<?php if($action == 'edit'): ?>
+			<h2> <a href=<?php echo $getState -> genNextURL(array('articleID' => $_GET['articleID']), 0, 'index.php'); ?> >Title</a></h2>
+		<?php else: ?>
 	        <h2>Title</h2>
+		<?php endif; ?>
 			<p> <input id="article-title" name="article-title" value="<?php echo $article -> title; ?>"></input> </p>
 	        <h2>Content</h2>
 			<textarea id="article-content" name="article-content"><?php echo $article -> articleContent; ?> </textarea>
