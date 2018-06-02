@@ -26,13 +26,13 @@ function fetch_list() {
 	httpRequest = new XMLHttpRequest();
 	var reqGet = '?action=select' + '&' + 'cur-page=' + curPage;
 
-	httpRequest.open('GET', 'http://192.168.128.135/chenxiaoyu/upload.php' + reqGet, true);
+	httpRequest.open('GET', SITE_ROOT + 'upload.php' + reqGet, true);
 
 	httpRequest.onreadystatechange = function () {
 		if(httpRequest.readyState === XMLHttpRequest.DONE
 				&& httpRequest.status === 200){
 			//alert(httpRequest.responseText);
-			selectPanelSecond.innerHTML += httpRequest.responseText;
+			selectPanelSecond.innerHTML = httpRequest.responseText;
 			addImgToArticle(); // 其他地方可以去掉这句话
 		}
 	};
@@ -48,3 +48,14 @@ openSelectPanel.onclick = function() {
 		selectPanelFirst.style.display = 'none';
 	}
 };
+
+preButton.onclick = function() {
+	curPage -= 1;
+	if(curPage < 0) curPage = 0;
+	fetch_list();
+};
+
+nextButton.onclick = function() {
+	curPage += 1;
+	fetch_list();
+}

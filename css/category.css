@@ -2,7 +2,8 @@
 	position: fixed;
 	top: 18%;
 	right: 0px;
-	width: 200px;
+	width: 250px;
+	z-index: 10;
 }
 
 .category-container{
@@ -20,6 +21,10 @@
 .category-card {
 	background-color: cornflowerblue;
 	max-height: 20px;
+}
+
+.marked-category {
+	background-color: #4CAF50;
 }
 
 .fold-img, .add-category-button, .remove-category-button{

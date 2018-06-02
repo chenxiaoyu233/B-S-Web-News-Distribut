@@ -1,21 +1,51 @@
 <?php
 
 class Page {
-   public function genTag($tag, $content, $class, $id, $style, $indent) {
-	  return $indent .'<' . $tag . ' class="' . $class . '" id="' . $id . '" style="' . $style . '">' . "\n" .
-	  $indent . $content . "\n" .
-	  $indent . '</' . $tag . '>' . "\n";
-   }
-   public function genTagFromArray($tag, $content, $prop, $indent){
-	  $indent = '';
-	  $ret = $indent. "<$tag";
-	  foreach($prop as $key => $val){
-		 $ret = $ret . ' ' . $key . '="' . $val . '"';
-	  }
-	  $ret = $ret . ">\n";
-	  $ret = $ret . $indent . $indent . $content . "\n";
-	  $ret = $ret . $indent . "</$tag>\n";
-	  return $ret;
-   }
-}
+	public $curPage; //当前所在的页数
+	public function __construct(){
+		if(!isset($_GET['page'])) $this -> curPage = 1;
+		$this -> curPage = $_GET['page'];
+	}
 
+	public function genController($kind, $at){
+		if(at < 0) return NULL;
+		global $getState;
+		$dom = new DOM(
+			'a',
+			array(
+				'class' => $kind . '-control',
+				'href' => $getState -> genNextURL(
+					array(
+						'page' => $at
+					),
+					1
+				)
+			),
+			NULL,
+			array(
+				new DOM(
+					'div',
+					array(
+						'class' => 'control-button-' . $kind
+					)
+				)
+			)
+		);
+		return $dom;
+	}
+
+	public function genPageController(){
+		$dom = new DOM(
+			'div',
+			array(
+				'class' => 'page-control-background'
+			),
+			NULL,
+			array(
+				$this -> curPage > 1 ? $this -> genController('left', $this -> curPage - 1) : NULL,
+				$this -> genController('right', $this -> curPage + 1)
+			)
+		);
+		return $dom;
+	}
+};

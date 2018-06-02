@@ -51,7 +51,7 @@ function handleFile(file) {
 }
 
 function sendFile(file) {
-	var uri = "http://192.168.128.135/chenxiaoyu/upload.php";
+	var uri = SITE_ROOT + "upload.php";
 	var xhr = new XMLHttpRequest();
 	var fd = new FormData();
 

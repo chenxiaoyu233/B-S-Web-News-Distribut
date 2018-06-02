@@ -45,7 +45,7 @@ class Material{
 	}
 
 	public function addMaterial($name, $content) {
-		global $db;
+		global $db, $user;
 		$info = $db -> query(
 			'select UUID()'
 		);
@@ -54,7 +54,7 @@ class Material{
 		echo $ID; // 回显materialID
 		if(!$db -> query(
 			"insert into Material values
-			('" . $ID . "', '" . $name . "', " . "now(), '" .
+			('" . $ID . "', '" . $name . "', '" . $user -> userName ."', ". "now(), '" .
 			addslashes($content) . "')"
 		)) {
 			echo $db -> errno . ', ' . $db -> error;
@@ -92,10 +92,11 @@ class Material{
 
 	public function listMaterial($curPage, $listNum) {
 		$curPos = $curPage * $listNum;
-		global $db;
+		global $db, $user;
 		$dom = new DOM();
 		$info = $db -> query( 
 			"select * from Material 
+			 where userName = '" . $user -> userName . "'
 			 order by uploadTime desc"
 		);
 		for($i = 0; $i < $listNum; $i++){

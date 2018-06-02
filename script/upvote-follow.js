@@ -4,7 +4,7 @@ var upvote = document.querySelectorAll('.vote-pic');
 function handleClick(type, target, img, motion, later){
 	var httpRequest = new XMLHttpRequest();
 	var reqGET = '?type=' + type + '&target=' + target;
-	httpRequest.open('GET', 'http://192.168.128.135/chenxiaoyu/upvote-follow.php' + reqGET, true);
+	httpRequest.open('GET', SITE_ROOT + 'upvote-follow.php' + reqGET, true);
 
 	httpRequest.onreadystatechange = function () {
 		if(httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200){

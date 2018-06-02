@@ -10,7 +10,7 @@ class GETstate {
    public function __construct() {
 	  $this -> curState = isset($_GET) ? $_GET : NULL;
 	  $this -> nextBaseState = array();
-	  $this -> curUrl = $_SERVER['REQUEST_URI'];
+	  $this -> curUrl = $_SERVER['SCRIPT_NAME'];
 	  $this -> siteRoot = '/';
 	  if(defined('SITE_ROOT') && defined('SERVER_URL')){
 		  $this -> siteRoot = 'http://' . SERVER_URL . SITE_ROOT;
@@ -23,8 +23,8 @@ class GETstate {
 
    public function genNextURL($newState = NULL, $mergeFlag = 0, $newUrl = NULL) {
 	  $submitState = $this -> nextBaseState;
-	  if($newState != NULL) foreach($newState as $key => $val) $submitState[$key] = $val;
 	  if($mergeFlag) foreach($this -> curState as $key => $val) $submitState[$key] = $val;
+	  if($newState != NULL) foreach($newState as $key => $val) $submitState[$key] = $val;
 	  $ret = $newUrl != NULL ? $this -> siteRoot . $newUrl : $this -> curUrl;
 	  $ret = $ret . '?';
 	  foreach($submitState as $key => $val){

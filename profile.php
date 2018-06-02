@@ -29,7 +29,15 @@ echo $userMeta -> genProfile() -> toString();
 </div>
 
 <?php
-$pusher = new Pusher();
+if(!isset($_GET['page'])){
+	$_GET['page'] = 1;
+}
+$subpage = $_GET['page'];
+
+$page = new Page();
+echo $page -> genPageController() -> toString();
+
+$pusher = new Pusher($subpage);
 echo $pusher -> genPush(
 	"select articleID
 	 from Article natural join Manuscript
