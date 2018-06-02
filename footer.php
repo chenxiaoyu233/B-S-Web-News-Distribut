@@ -6,6 +6,7 @@
 </body>
 
 <link rel="stylesheet" href="./css/category.css">
+<link rel="stylesheet" href="./css/page-control.css">
 <script src="script/category.js"></script>
 
 <script src="script/to-top.js"></script>

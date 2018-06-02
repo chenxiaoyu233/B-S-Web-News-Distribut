@@ -1,0 +1,49 @@
+.page-control-background{
+	position: fixed;
+	top: 50%;
+	left: 0px;
+	right: 0px;
+	height: 200px;
+
+}
+
+.left-control, .right-control {
+	position: absolute;
+	height: 100%;
+}
+
+.control-button-left, .control-button-right {
+	display: block;
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	border-top: solid 100px transparent;
+	border-bottom: solid 100px transparent;
+}
+
+.left-control {
+	left: 0px;
+	right: 95%;
+}
+
+.right-control {
+	right: 0px;
+	left: 95%;
+}
+
+.control-button-left {
+	border-right: solid 50px #03A9F4;
+}
+
+.control-button-right {
+	border-left: solid 50px #03A9F4;
+}
+
+.control-button-left:hover {
+	border-right-color: #3F51B5;
+}
+
+.control-button-right:hover {
+	border-left-color: #3F51B5;
+}
+
