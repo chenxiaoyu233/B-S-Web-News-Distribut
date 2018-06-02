@@ -32,7 +32,7 @@ function fetch_list() {
 		if(httpRequest.readyState === XMLHttpRequest.DONE
 				&& httpRequest.status === 200){
 			//alert(httpRequest.responseText);
-			selectPanelSecond.innerHTML += httpRequest.responseText;
+			selectPanelSecond.innerHTML = httpRequest.responseText;
 			addImgToArticle(); // 其他地方可以去掉这句话
 		}
 	};
@@ -48,3 +48,14 @@ openSelectPanel.onclick = function() {
 		selectPanelFirst.style.display = 'none';
 	}
 };
+
+preButton.onclick = function() {
+	curPage -= 1;
+	if(curPage < 0) curPage = 0;
+	fetch_list();
+};
+
+nextButton.onclick = function() {
+	curPage += 1;
+	fetch_list();
+}
