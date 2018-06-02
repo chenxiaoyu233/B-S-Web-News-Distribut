@@ -217,6 +217,34 @@ class Pusher {
 		return $footer;
 	}
 
+	public function genAuthorPhoto(){
+		$userMeta = new UserMeta($this -> article -> userName);
+		global $getState;
+		$dom = new DOM(
+			'div',
+			array(
+				'class' => 'user-photo-bg'
+			),
+			NULL,
+			array(
+				new DOM(
+					'img',
+					array(
+						'class' => 'user-img',
+						'src' => $getState -> genNextURL(
+							array(
+								'materialID' => $userMeta -> inner['photo']
+							),
+							0,
+							'show-pic.php'
+						)
+					)
+				)
+			)
+		);
+		return $dom;
+	}
+
 	public function genPreviewOfPage($articleID) {
 		// get article info
 		$this -> article = new Article();
@@ -230,6 +258,7 @@ class Pusher {
 			),
 			NULL,
 			array(
+				$this -> genAuthorPhoto(),
 				$this -> genPreviewTitle(),
 				$this -> genPreviewContent(),
 				$this -> genPreviewFooter()
