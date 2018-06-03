@@ -32,11 +32,11 @@
 }
 
 .control-button-left {
-	border-right: solid 50px #03A9F4;
+	border-right: solid 20px #03A9F4;
 }
 
 .control-button-right {
-	border-left: solid 50px #03A9F4;
+	border-left: solid 20px #03A9F4;
 }
 
 .control-button-left:hover {
