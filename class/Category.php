@@ -50,7 +50,7 @@ class Category{
 						'class' => 'category-link',
 						'href' => $getState -> genNextURL(array('categoryName' => $categoryName), 0, 'index.php')
 					),
-					$categoryName
+					$categoryName == 'NULL' ? '目录' : $categoryName
 				),
 				$needAddButton ? new DOM(
 					'img',
