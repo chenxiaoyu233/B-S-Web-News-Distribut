@@ -2,6 +2,10 @@
 
 require_once('setting.php');
 
+if($_GET['fatherCategory'] == '目录'){
+	$_GET['fatherCategory'] = 'NULL';
+}
+
 
 if(isset($_GET['action']) && $_GET['action'] == 'add-category'){
 	if($user -> permission == 'admin' || $user -> permission == 'root'){
