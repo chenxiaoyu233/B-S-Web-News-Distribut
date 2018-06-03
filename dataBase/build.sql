@@ -9,14 +9,14 @@ create table User (
 
 drop table if exists Material;
 create table Material (
-	materialID varchar(100) not null primary key,
+	materialID varchar(100) not null,
 	materialFileName varchar(255) not null,
 	userName varchar(20) not null,
 	uploadTime datetime,
 	materialContent longblob,
+	primary key (materialID, userName),
 	foreign key (userName) references User(userName)
-	on update cascade
-	on delete set null
+	on delete cascade
 ) charset utf8;
 
 -- 因为Material表中的二进制文件比较大, 为了优化查询的时间,在这个表上面建立索引
