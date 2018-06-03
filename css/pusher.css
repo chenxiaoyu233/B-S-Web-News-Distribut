@@ -41,6 +41,22 @@ div#pusher-background {
 .tag-background {
 	background-color: rgba(0, 0, 0, 70%);
 	border-radius: 5px/5px;
+	margin-top: 20px;
+}
+
+.user-photo-bg {
+	/* float: left; */
+	width: 50px;
+	height: 50px;
+	position: relative;
+	left: -25px;
+	top: -10px;
+	border-radius: 50%/50%;
+	border: solid 2px;
+}
+
+.user-img {
+	border-radius: 50%/50%;
 }
 
 .tag-title {
