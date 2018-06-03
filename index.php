@@ -16,7 +16,7 @@ if(isset($_GET['articleID'])){
 	$comment = new Comment($_GET['articleID']);
 	$dom = $comment -> genComment(true);
 	echo $dom -> toString();
-} else if(isset($_GET['categoryName'])){
+} else if(isset($_GET['categoryName']) && $_GET['categoryName'] != 'NULL'){
 	$page = new Page();
 	echo $page -> genPageController() -> toString();
 	$pusher = new Pusher($subpage);

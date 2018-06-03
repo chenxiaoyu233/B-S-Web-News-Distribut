@@ -48,7 +48,7 @@ class Category{
 					'a',
 					array(
 						'class' => 'category-link',
-						'href' => $getState -> genNextURL(array('categoryName' => $categoryName), 0, 'index.php')
+						 'href' => $getState -> genNextURL(array('categoryName' => $categoryName), 0, 'index.php')
 					),
 					$categoryName == 'NULL' ? '目录' : $categoryName
 				),
