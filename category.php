@@ -4,7 +4,7 @@ require_once('setting.php');
 
 
 if(isset($_GET['action']) && $_GET['action'] == 'add-category'){
-	if($user -> permission == 'admin' && $user -> permission == 'root'){
+	if($user -> permission == 'admin' || $user -> permission == 'root'){
 		$category -> addCategory($_GET['categoryName'], $_GET['fatherCategory']);
 	}
 	$dom = new DOM(
@@ -25,7 +25,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'add-category'){
 }
 
 if(isset($_GET['action']) && $_GET['action'] == 'remove-category'){
-	if($user -> permission == 'admin' && $user -> permission == 'root'){
+	if($user -> permission == 'admin' || $user -> permission == 'root'){
 		$category -> removeCategory($_GET['categoryName']);
 	}
 }
