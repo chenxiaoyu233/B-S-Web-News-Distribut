@@ -72,7 +72,7 @@ function rebuildEvent(){
 	buildFoldButton(); //折叠事件
 	buildAddCategoryButton(); //添加目录事件
 	buildRemoveCategoryButton(); //删除目录事件
-	buildCategoryHead(); //隐藏目录事件
+	//buildCategoryHead(); //隐藏目录事件
 	buildAddArticleFunction();  //添加文章事件 
 }
 
@@ -136,17 +136,17 @@ function buildAddCategoryButton() {
 //
 // show / hide the category list
 //
-function buildCategoryHead() {
-	var categoryHeadButton = document.getElementById('category-head-button');
-	var categoryContainerRoot = document.querySelector('.category-container-root');
-	categoryHeadButton.onclick = function () {
-		if(categoryContainerRoot.style.left == ''){
-			categoryContainerRoot.style.left = '100%';
-		} else {
-			categoryContainerRoot.style.left = '';
-		}
-	};
-}
+//function buildCategoryHead() {
+//	var categoryHeadButton = document.getElementById('category-head-button');
+//	var categoryContainerRoot = document.querySelector('.category-container-root');
+//	categoryHeadButton.onclick = function () {
+//		if(categoryContainerRoot.style.left == ''){
+//			categoryContainerRoot.style.left = '100%';
+//		} else {
+//			categoryContainerRoot.style.left = '';
+//		}
+//	};
+//}
 
 //
 // delete items in the category

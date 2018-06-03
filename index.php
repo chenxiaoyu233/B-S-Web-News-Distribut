@@ -33,10 +33,10 @@ if(isset($_GET['articleID'])){
 	echo $pusher -> genPush() -> toString();
 }
 
-if(isset($_GET['articleID'])){
-	$category -> setArticleConstraint($_GET['articleID']);
-}
-echo $category -> genCategoryPanel() -> toString();
+//if(isset($_GET['articleID'])){
+//	$category -> setArticleConstraint($_GET['articleID']);
+//}
+//echo $category -> genCategoryPanel() -> toString();
 
 include('footer.php');
 ?>

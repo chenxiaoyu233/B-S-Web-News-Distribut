@@ -138,6 +138,7 @@ div#h2 {
 div#links {
    display: flex;
    background-color: gray;
+   height: 20px;
 }
 
 div#links a{
