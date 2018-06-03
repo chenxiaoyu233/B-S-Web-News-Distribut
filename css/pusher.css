@@ -41,6 +41,7 @@ div#pusher-background {
 .tag-background {
 	background-color: rgba(0, 0, 0, 70%);
 	border-radius: 5px/5px;
+	margin-top: 20px;
 }
 
 .user-photo-bg {

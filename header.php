@@ -27,7 +27,21 @@
 			   嗨, <?php echo $user -> userName; ?> 
 			</a> 
 			<div class="profile-hover-down">
-			   <img src="./image/welcome.png" alt="" srcset="" width="60px" height="60px" id="user-photo">
+			<img src=<?php 
+				require_once('setting.php');
+				$userMeta = new UserMeta($user -> userName);
+				if(is_null($userMeta -> inner['photo'])){
+					echo $getState -> genNextURL(NULL, 0, 'image/welcome.png');
+				} else {
+					echo $getState -> genNextURL(
+						array(
+							'materialID' => $userMeta -> inner['photo']
+						),
+						0,
+						'show-pic.php'
+					);
+				}
+				?>  alt="" srcset="" width="60px" height="60px" id="user-photo">
 			   <ul>
 				  <li> <a href="./profile.php"> 个人中心 </a> </li>
 				  <li> <a href="./login.php?action=logout"> 登出 </a> </li>
