@@ -29,7 +29,7 @@ class Category{
 	}
 
 	public function genThisCategory($mainCssClass, $needAddButton, $categoryName){
-		global $getState;
+		global $getState, $user;
 		$dom = new DOM(
 			'div',
 			array(
@@ -52,14 +52,14 @@ class Category{
 					),
 					$categoryName == 'NULL' ? '目录' : $categoryName
 				),
-				$needAddButton ? new DOM(
+				$needAddButton && ($user -> permission == 'root' || $user -> permission == 'admin') ? new DOM(
 					'img',
 					array(
 						'class' => 'add-category-button',
 						'src' => $getState -> genNextURL(NULL, 0, 'image/add.png')
 					)
 				) : NULL,
-				$needAddButton ? new DOM(
+				$needAddButton && ($user -> permission == 'root' || $user -> permission == 'admin') ? new DOM(
 					'img',
 					array(
 						'class' => 'remove-category-button',

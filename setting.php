@@ -17,7 +17,6 @@ spl_autoload_register(function ($class_name) {
 //set User;
 $user = new User();
 $user -> login_with_session(); //在任何页面都可以使用session登陆
-
 //set Article;
 $article = new Article();
 
