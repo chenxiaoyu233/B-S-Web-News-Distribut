@@ -364,7 +364,7 @@ class UserMeta {
 	private function end_with_error($str){
 		ob_end_clean();
 		header('Location: ./sad-panda.php?sentence=' . $str);
-		exit();
+		exit('end_with_erro');
 	}
 
 	private function nick_name_valid_check(){
@@ -418,7 +418,7 @@ class UserMeta {
 	public function modifyProfile(){
 		global $db;
 		if(!$this -> check_info_valid()) {
-			exit();
+			exit('check_info_valid');
 		}
 		$info = $db -> query(
 			"select password from User
@@ -440,8 +440,7 @@ class UserMeta {
 			sex = " . $this -> deal($_POST['sex']) . "
 			where userName = '" . $this -> inner['userName'] . "'"
 		)){
-			echo $db -> connect_errno . $db -> connect_error;
-			exit();
+			exit('mysql dump');
 		}
 		ob_end_clean();
 		header('Location: ./profile.php');
