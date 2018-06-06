@@ -116,7 +116,7 @@ class Pusher {
 											'profile.php'
 										)
 									),
-									$this -> article -> userName
+									is_null($userMeta -> inner['nickName']) ? $this -> article -> userName : $userMeta -> inner['nickName']
 								)
 							)
 						)
