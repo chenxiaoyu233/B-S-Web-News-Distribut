@@ -70,6 +70,7 @@ class Pusher {
 		if($info -> num_rows == 0) {
 			$target = 'image/follow2.png';
 		}
+		$userMeta = new UserMeta($this -> article -> userName);
 		$follow = new DOM(
 			'table',
 			array(
@@ -106,7 +107,14 @@ class Pusher {
 								new DOM (
 									'a',
 									array(
-										'class' => 'tag-link'
+										'class' => 'tag-link',
+										'href' => $getState -> genNextURL(
+											array(
+												'userName' => $this -> article -> userName
+											),
+											0,
+											'profile.php'
+										)
 									),
 									$this -> article -> userName
 								)

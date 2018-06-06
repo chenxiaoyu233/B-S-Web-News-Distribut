@@ -312,7 +312,7 @@ class UserMeta {
 	}
 
 	public function genControl(){
-		global $getState;
+		global $getState, $user;
 		$control = new DOM(
 			'div',
 			array(
@@ -327,13 +327,13 @@ class UserMeta {
 						'src' => $getState -> genNextURL(NULL, 0, 'image/switch.png')
 					)
 				),
-				new DOM(
+				$user -> userName == $this -> inner['userName'] ? new DOM(
 					'img',
 					array(
 						'id' => 'edit',
 						'src' => $getState -> genNextURL(NULL, 0, 'image/pencil.png')
 					)
-				)
+				) : NULL
 			)
 		);
 		return $control;
