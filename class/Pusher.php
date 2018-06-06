@@ -239,7 +239,7 @@ class Pusher {
 					'img',
 					array(
 						'class' => 'user-img',
-						'src' => !is_null($userMeta -> photo) ? $getState -> genNextURL(
+						'src' => !is_null($userMeta -> inner['photo']) ? $getState -> genNextURL(
 							array(
 								'materialID' => $userMeta -> inner['photo']
 							),

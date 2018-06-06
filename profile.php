@@ -25,7 +25,13 @@ echo $userMeta -> genProfile() -> toString();
 <div id="modify-panel">
 	<?php echo $userMeta -> genPhoto('modify-photo-panel', 'modify-photo') -> toString(); ?>
 	<form action="profile.php?action=modify" method="POST">
-		<input type="text" name='photo' id="m-materialID">
+		<input type="text" name='photo' id="m-materialID" value="
+		<?php 
+			if(!is_null($userMeta -> inner['photo'])){
+				echo $userMeta -> inner['photo'];
+			}
+		?>
+		">
 		<input type="text" name='nickName' id="m-nickName">
 		<input type="text" name='sex' id="m-sex" maxlength="1">
 		<input type="text" name='email' id="m-email">
