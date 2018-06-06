@@ -361,11 +361,68 @@ class UserMeta {
 		return $ret;
 	}
 
-	public function modifyProfile(){
+	private function end_with_error($str){
+		ob_end_clean();
+		header('Location: ./sad-panda.php?sentence=' . $str);
+		exit();
+	}
+
+	private function nick_name_valid_check(){
+		if(strlen($_POST['nickName']) > 20){
+			$this -> end_with_error('昵称过长');
+			return false;
+		}
+		return true;
+	}
+
+	private function email_valid_check(){
+		if(strlen($_POST['email']) > 255){
+			$this -> end_with_error("邮箱不能超过255");
+			return false;
+		}
+		if(!preg_match("/^[_0-9a-zA-Z]+@[_0-9a-zA-Z]+\.[a-zA-Z]+$/", $_POST['email'])){
+			$this -> end_with_error("您的邮箱的格式不正确");
+			return false;
+		}
+
 		global $db;
 		$info = $db -> query(
+			"select email " .
+			"from UserMeta " .
+			"where email = '" . $_POST['email'] . "'
+			and userName <> '". $this -> inner['userName'] . "'"
+		);
+		if($info -> num_rows != 0){
+			$this -> end_with_error("这个邮箱已经被别人使用过了");
+			return false;
+		}
+
+		return true;
+	}
+
+	private function sex_valid_check(){
+		if(strlen($_POST['sex']) > 1){
+			$this -> end_with_error('性别字符串长度不合适');
+			return false;
+		}
+		return true;
+	}
+
+	private function check_info_valid(){
+		if(!$this -> nick_name_valid_check()) return false;
+		if(!$this -> email_valid_check()) return false;
+		if(!$this -> sex_valid_check()) return false;
+		return true;
+	}
+
+	public function modifyProfile(){
+		global $db;
+		if(!$this -> check_info_valid()) {
+			exit();
+		}
+		$info = $db -> query(
 			"select password from User
-			 where userName = '" . $this -> inner['userName'] . "'"
+			where userName = '" . $this -> inner['userName'] . "'"
 		);
 		$info -> data_seek(0);
 		$row = $info -> fetch_assoc();
@@ -375,14 +432,17 @@ class UserMeta {
 			return; 
 		}
 
-		$db -> query(
+		if(!$db -> query(
 			"update UserMeta set
-			 nickName = " . $this -> deal($_POST['nickName']) . ",
-			 photo = " . $this -> deal($_POST['photo']) . ",
-			 email = " . $this -> deal($_POST['email']) . ",
-			 sex = " . $this -> deal($_POST['sex']) . "
-			 where userName = '" . $this -> inner['userName'] . "'"
-		);
+			nickName = " . $this -> deal($_POST['nickName']) . ",
+			photo = " . $this -> deal($_POST['photo']) . ",
+			email = " . $this -> deal($_POST['email']) . ",
+			sex = " . $this -> deal($_POST['sex']) . "
+			where userName = '" . $this -> inner['userName'] . "'"
+		)){
+			echo $db -> connect_errno . $db -> connect_error;
+			exit();
+		}
 		ob_end_clean();
 		header('Location: ./profile.php');
 	}
