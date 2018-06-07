@@ -1,6 +1,6 @@
 .category-container-root {
 	/* position: fixed; */
-	flex: 10%;
+	flex: 30%;
 	top: 18%;
 	right: 0px;
 	width: 250px;
@@ -9,8 +9,9 @@
 
 .category-container{
 	display: block;
-	padding-left: 10px;
+	padding-left: 20px;
 	/* height: 0px; */
+	border-left: solid 20px lightgreen;
 }
 
 .category-container, .category-container-root{
@@ -22,7 +23,7 @@
 .category-card {
 	background-color: cornflowerblue;
 	max-height: 20px;
-	text-align: center;
+	/* text-align: center; */
 }
 
 .marked-category {
@@ -86,6 +87,7 @@ button.craete-category-button {
 	background-color: coral;
 	border: 0px;
 }
+
 
 
 
