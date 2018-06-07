@@ -219,6 +219,22 @@ class Pusher {
 						)
 					),
 					'edit'
+				),
+				$this -> article -> userName != $user -> userName ? NULL : 
+				new DOM(
+					'a',
+					array (
+						'class' => 'tag-link',
+						'href' => $getState -> genNextURL(
+							array(
+								'action' => 'delete',
+								'articleID' => $this -> article -> articleID
+							),
+							0,
+							'delete-article.php'
+						)
+					),
+					'delete'
 				)
 			)
 		);
