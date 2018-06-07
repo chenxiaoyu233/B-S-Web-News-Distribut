@@ -1,5 +1,6 @@
 .category-container-root {
-	position: fixed;
+	/* position: fixed; */
+	flex: 30%;
 	top: 18%;
 	right: 0px;
 	width: 250px;
@@ -8,19 +9,21 @@
 
 .category-container{
 	display: block;
-	padding-left: 10px;
+	padding-left: 20px;
 	/* height: 0px; */
+	border-left: solid 20px lightgreen;
 }
 
 .category-container, .category-container-root{
 	background-color: blueviolet;	
 	overflow: hidden;
-	transition-duration: 1s;
+	transition-duration: 0.6s;
 }
 
 .category-card {
 	background-color: cornflowerblue;
 	max-height: 20px;
+	/* text-align: center; */
 }
 
 .marked-category {
@@ -84,5 +87,7 @@ button.craete-category-button {
 	background-color: coral;
 	border: 0px;
 }
+
+
 
 

@@ -70,6 +70,7 @@ class Pusher {
 		if($info -> num_rows == 0) {
 			$target = 'image/follow2.png';
 		}
+		$userMeta = new UserMeta($this -> article -> userName);
 		$follow = new DOM(
 			'table',
 			array(
@@ -106,9 +107,16 @@ class Pusher {
 								new DOM (
 									'a',
 									array(
-										'class' => 'tag-link'
+										'class' => 'tag-link',
+										'href' => $getState -> genNextURL(
+											array(
+												'userName' => $this -> article -> userName
+											),
+											0,
+											'profile.php'
+										)
 									),
-									$this -> article -> userName
+									is_null($userMeta -> inner['nickName']) ? $this -> article -> userName : $userMeta -> inner['nickName']
 								)
 							)
 						)
@@ -211,6 +219,22 @@ class Pusher {
 						)
 					),
 					'edit'
+				),
+				$this -> article -> userName != $user -> userName ? NULL : 
+				new DOM(
+					'a',
+					array (
+						'class' => 'tag-link',
+						'href' => $getState -> genNextURL(
+							array(
+								'action' => 'delete',
+								'articleID' => $this -> article -> articleID
+							),
+							0,
+							'delete-article.php'
+						)
+					),
+					'delete'
 				)
 			)
 		);
@@ -231,13 +255,13 @@ class Pusher {
 					'img',
 					array(
 						'class' => 'user-img',
-						'src' => $getState -> genNextURL(
+						'src' => !is_null($userMeta -> inner['photo']) ? $getState -> genNextURL(
 							array(
 								'materialID' => $userMeta -> inner['photo']
 							),
 							0,
 							'show-pic.php'
-						)
+						) : $getState -> genNextURL(NULL, 0, 'image/user.png')
 					)
 				)
 			)

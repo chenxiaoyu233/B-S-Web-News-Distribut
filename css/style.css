@@ -138,12 +138,13 @@ div#h2 {
 div#links {
    display: flex;
    background-color: gray;
+   height: 20px;
 }
 
 div#links a{
    margin: 0%;
    padding: 0%;
-   flex: 10%;
+   flex: 70%;
 }
 
 a.title-content{

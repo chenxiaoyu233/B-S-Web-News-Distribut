@@ -60,7 +60,13 @@
 		 <!-- -->
 		 <div id="links">
 			<a class="title-content" href="./index.php">主页</a>
-			<a class="title-content" id = "category-head-button">分类</a>
+			<!-- <a class="title-content" id = "category-head-button">分类</a> -->
+			<?php 
+				if(isset($_GET['articleID'])){
+					$category -> setArticleConstraint($_GET['articleID']);
+				}
+				echo $category -> genCategoryPanel() -> toString();
+			?>
 		 </div>
 	  </nav>
 	  <script src="./script/author.js"></script>

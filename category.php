@@ -2,8 +2,15 @@
 
 require_once('setting.php');
 
+if($_GET['fatherCategory'] == '目录'){
+	$_GET['fatherCategory'] = 'NULL';
+}
+
+
 if(isset($_GET['action']) && $_GET['action'] == 'add-category'){
-	$category -> addCategory($_GET['categoryName'], $_GET['fatherCategory']);
+	if($user -> permission == 'admin' || $user -> permission == 'root'){
+		$category -> addCategory($_GET['categoryName'], $_GET['fatherCategory']);
+	}
 	$dom = new DOM(
 		'div',
 		array(
@@ -22,5 +29,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'add-category'){
 }
 
 if(isset($_GET['action']) && $_GET['action'] == 'remove-category'){
-	$category -> removeCategory($_GET['categoryName']);
+	if($user -> permission == 'admin' || $user -> permission == 'root'){
+		$category -> removeCategory($_GET['categoryName']);
+	}
 }
